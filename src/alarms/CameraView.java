@@ -10,7 +10,8 @@ import org.junit.Test;
 
 public class CameraView {
 	private final int[][] data;
-	private final int xDim, yDim;
+	private final int xDim;
+	private final int yDim;
 	private CameraDirection cameraDirection;
 	private List<int[][]> possibleShifts;
 
@@ -63,6 +64,14 @@ public class CameraView {
 
 	public int[][] getData() {
 		return data;
+	}
+
+	public int getxDim() {
+		return xDim;
+	}
+
+	public int getyDim() {
+		return yDim;
 	}
 
 	boolean hasFloating() {
