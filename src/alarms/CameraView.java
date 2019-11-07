@@ -1,3 +1,5 @@
+package alarms;
+
 import java.util.Objects;
 
 public class CameraView {

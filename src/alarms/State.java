@@ -1,3 +1,5 @@
+package alarms;
+
 public class State {
 
 	private CameraView frontView;
