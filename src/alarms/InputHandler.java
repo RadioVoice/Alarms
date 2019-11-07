@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class InputHandler {
-    int x, y, z;
-    private ArrayList<CameraView> frames;
+    private final int x, y, z;
+    private ArrayList<State> states;
 
     //Private Constructor (txt file)
     //  takes from file and stores in local vars, separates each space/line as needed
     //  takes dimensions -> x, y, z
-    //  takes rest of file and splits on space or line break -> Frames
+    //  takes rest of file and splits on space or line break -> states
 
     private InputHandler(File file) throws FileNotFoundException {
         Scanner scan = new Scanner(file);
@@ -24,9 +24,7 @@ public class InputHandler {
             CameraView front = CameraView.of(x, z, CameraDirection.FRONT, frameSet[0]);
             CameraView side = CameraView.of(y, z, CameraDirection.SIDE, frameSet[1]);
             CameraView top = CameraView.of(x, y, CameraDirection.TOP, frameSet[2]);
-            frames.add(front);
-            frames.add(side);
-            frames.add(top);
+            states.add(State.of(front, side, top));
         }
     }
 
@@ -42,7 +40,7 @@ public class InputHandler {
     //  Does each line only contain 0 and 1?
     //  check size of each view and make sure it matches what it should be (in sets of 3)
 
-
-    //List<alarms.State> states
-    //  repeatably takes 3 Strings from Frames and makes a alarms.State, then returns a list of States
+    ArrayList<State> getStates(){
+        return states;
+    }
 }

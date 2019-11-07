@@ -6,10 +6,14 @@ public class State {
 	private CameraView sideView;
 	private CameraView topView;
 
-	public State(CameraView front, CameraView side, CameraView top) {
+	private State(CameraView front, CameraView side, CameraView top) {
 		this.frontView = front;
 		this.sideView = side;
 		this.topView = top;
+	}
+
+	public static State of(CameraView front, CameraView side, CameraView top){
+		return new State(front, side, top);
 	}
 
 	public CameraView getFrontView() {
