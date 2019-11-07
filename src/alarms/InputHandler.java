@@ -19,11 +19,14 @@ public class InputHandler {
         x = Integer.parseInt(scan.findInLine("\\d"));
         y = Integer.parseInt(scan.findInLine("\\d"));
         z = Integer.parseInt(scan.findInLine("\\d"));
-        while(scan.hasNextLine()){
+        while(scan.hasNextLine()) {
             String[] frameSet = scan.nextLine().split(" ");
             CameraView front = CameraView.of(x, z, CameraDirection.FRONT, frameSet[0]);
-            CameraView side = CameraView.of(y, z, CameraDirection.SIDE, frameSet[0]);
-            CameraView top = CameraView.of(x, y, CameraDirection.TOP, frameSet[0]);
+            CameraView side = CameraView.of(y, z, CameraDirection.SIDE, frameSet[1]);
+            CameraView top = CameraView.of(x, y, CameraDirection.TOP, frameSet[2]);
+            frames.add(front);
+            frames.add(side);
+            frames.add(top);
         }
     }
 
