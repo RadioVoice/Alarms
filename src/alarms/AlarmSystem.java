@@ -2,6 +2,7 @@ package alarms;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class AlarmSystem {
     
@@ -27,14 +28,21 @@ public class AlarmSystem {
     //  if change is not permanent, return false
     // otherwise, return true
 
-    //boolean isChangePermanent(list<state>, index)
+    public boolean isChangePermanent(List<State> states, int index) {
+    	Objects.requireNonNull(states);
+    	Objects.requireNonNull(index);
+    	int i = index + 1;
+    	while(i < states.size() && i <= index + 5) {
+    		if (states.get(index).equals(states.get(i))) {
+    			return false;
+    		}
+    	}
+    	return true;
+    }
     //  look ahead in the list of states and see if changes back to original, if not then continue
 
     //boolean isCameraShifted()
     //  compares state to all shifts of the correct state, if it is any shift then return true
-
-    //boolean hasFloating(alarms.State)
-    //  only applies to front and side cameras
 
     //boolean isCameraOff(alarms.State)
     //  checks for any null CameraViews in the state
