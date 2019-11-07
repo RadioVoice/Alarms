@@ -27,6 +27,10 @@ public class State {
 	public CameraView getTopView() {
 		return this.topView;
 	}
+	
+	public boolean hasFloating() {
+		return frontView.hasFloating() || sideView.hasFloating();
+	}
 
 	@Override
 	public boolean equals(Object other) {

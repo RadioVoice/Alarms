@@ -36,20 +36,31 @@ public class CameraView {
         return returnView;
     }
 
-    void setValue(int x, int y, int value){
+    public void setValue(int x, int y, int value){
         data[x][y] = value;
     }
 
-    int getValue(int x, int y){
+    public int getValue(int x, int y){
         return data[x][y];
     }
 
-    CameraDirection getCameraDirection() {
+    public CameraDirection getCameraDirection() {
         return this.cameraDirection;
     }
 
-    int[][] getData(){
+    public int[][] getData(){
         return data;
+    }
+    
+    public boolean hasFloating() {
+    	for (int i = 0; i < data.length; i++) {
+    		for (int j = data.length - 1; j > 0; j--) {
+    			if (data[i][j] == 0 && data[i][j-1] == 1) {
+    				return true;
+    			}
+    		}
+    	}
+    	return false;
     }
 
     @Override
