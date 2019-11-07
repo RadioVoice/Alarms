@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="11a4435d-bf94-4f11-a995-182195ca9f32" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/alarms/AlarmSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/alarms/AlarmSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alarms/CameraView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/alarms/CameraView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/alarms/InputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/alarms/InputHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alarms/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/alarms/State.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
