@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
+import org.junit.Test;
+
 public class CameraView {
 	private final int[][] data;
 	private CameraDirection cameraDirection;
@@ -70,9 +72,6 @@ public class CameraView {
 		assert (cameraView.cameraDirection.equals(cameraDirection));
 		assert (cameraView.data.length == data.length);
 		assert (cameraView.data[0].length == data[0].length);
-		if (this.getClass().equals(cameraView)) {
-			return true;
-		}
 		Iterator<int[][]> iter = possibleShiftedViews(cameraView.data).iterator();
 		while (iter.hasNext()) {
 			if (iter.next().equals(data)) {
@@ -83,27 +82,29 @@ public class CameraView {
 	}
 
 	// get all possible shifted views
-	private List<int[][]> possibleShiftedViews(int[][] view) {
+	private static List<int[][]> possibleShiftedViews(int[][] view) {
 		List<int[][]> views = new ArrayList<>();
-		int[][] grid;
+		int[][] container;
 		for (int i = 0; i <= view.length * 2; i++) {
 			for (int j = 0; j <= view[0].length * 2; j++) {
-				grid = emptyGrid(view.length * 3, view[0].length * 3);
-				copyArray(view, grid, i, j);
-				views.add(arrayRange(grid, view.length, view[0].length, view.length * 2, view[0].length * 2));
+				container = emptyContainer(view.length * 3, view[0].length * 3);
+				copyArray(view, container, i, j);
+				views.add(arrayRange(container, view.length, view[0].length, view.length * 2, view[0].length * 2));
 			}
 		}
 		return views;
 	}
 
-	private int[][] emptyGrid(int rowNum, int colNum) {
-		int[][] grid = new int[rowNum][colNum];
-		Arrays.fill(grid, 0);
-		return grid;
+	private static int[][] emptyContainer(int rowNum, int colNum) {
+		int[][] container = new int[rowNum][colNum];
+		for(int i = 0; i < container.length; i++) {
+			Arrays.fill(container[i], 0);
+		}
+		return container;
 	}
 
 	// copy 2d array
-	private void copyArray(int[][] source, int[][] dest, int startI, int startJ) {
+	private static void copyArray(int[][] source, int[][] dest, int startI, int startJ) {
 		for (int i = 0; i < source.length; i++) {
 			for (int j = 0; j < source[0].length; j++) {
 				dest[startI + i][startJ + j] = source[i][j];
@@ -112,18 +113,76 @@ public class CameraView {
 	}
 
 	// return a part of a 2d array
-	private int[][] arrayRange(int[][] source, int startI, int startJ, int endI, int endJ) {
-		int[][] grid = new int[endI - startI][endJ - startJ];
+	private static int[][] arrayRange(int[][] source, int startI, int startJ, int endI, int endJ) {
+		int[][] part = new int[endI - startI][endJ - startJ];
 		for (int i = startI; i < endI; i++) {
-			grid[i - startI] = Arrays.copyOfRange(source[i], startJ, endJ);
+			part[i - startI] = Arrays.copyOfRange(source[i], startJ, endJ);
 		}
-		return grid;
+		return part;
 	}
 
 	@Override
 	public boolean equals(Object other) {
 		return other instanceof CameraView && ((CameraView) other).cameraDirection.equals(cameraDirection)
 				&& ((CameraView) other).data.equals(data);
+	}
+
+	public static class CameraViewPrivateMethodsTest {
+		private int[][] view = { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } };
+		private int[][] container = emptyContainer(9, 9);
+
+		@Test
+		public void possibleShiftedViewsTest() {
+//			Iterator<int[][]> iter = possibleShiftedViews(view).iterator();
+//			while (iter.hasNext()) {
+//				int[][] temp = iter.next();
+//				for(int i = 0; i < temp.length; i++) {
+//					for(int j = 0; j < temp.length; j++) {
+//						System.out.print(temp[i][j]);
+//					}
+//					System.out.println();
+//				}
+//				System.out.println();
+//			}
+		}
+		
+		@Test
+		public void emptyContainerTest() {
+			int[][] temp = emptyContainer(9, 9);
+			for(int i = 0; i < temp.length; i++) {
+				for(int j = 0; j < temp.length; j++) {
+					System.out.print(temp[i][j]);
+				}
+				System.out.println();
+			}
+			System.out.println();
+		}
+		
+		@Test
+		public void copyArrayTest() {
+			copyArray(view, container, 3, 3);
+			for(int i = 0; i < container.length; i++) {
+				for(int j = 0; j < container.length; j++) {
+					System.out.print(container[i][j]);
+				}
+				System.out.println();
+			}
+			System.out.println();
+			
+			int[][] temp = arrayRange(container, 3, 3, 6, 6);
+			for(int i = 0; i < temp.length; i++) {
+				for(int j = 0; j < temp.length; j++) {
+					System.out.print(temp[i][j]);
+				}
+				System.out.println();
+			}
+			System.out.println();
+		}
+		
+		@Test
+		public void arrayRangeTest() {
+			
+		}
 	}
 
 }
