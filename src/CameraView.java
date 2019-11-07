@@ -1,9 +1,13 @@
+import java.util.Objects;
+
 public class CameraView {
     
 	private CameraDirection cameraDirection;
 	private int[][] view;
 	
 	public CameraView(CameraDirection cameraDirection, int[][] view) {
+		Objects.requireNonNull(cameraDirection);
+		Objects.requireNonNull(view);
 		this.cameraDirection = cameraDirection;
 		this.view = view;
 	}
