@@ -7,6 +7,7 @@ import java.util.Objects;
 public class AlarmSystem {
     
 	private List<State> states = new ArrayList<>();
+
 	
     //correct state of boxes
 

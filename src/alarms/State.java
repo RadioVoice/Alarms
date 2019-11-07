@@ -32,14 +32,17 @@ public class State {
 		return frontView.hasFloating() || sideView.hasFloating();
 	}
 
-	public boolean isShiftFrom(State state) {
-		return frontView.isShiftFrom(state.frontView) && sideView.isShiftFrom(state.sideView)
+	boolean isShiftFrom(State state) {
+		return frontView.isShiftFrom(state.frontView)
+				&& sideView.isShiftFrom(state.sideView)
 				&& topView.isShiftFrom(state.topView);
 	}
 
 	@Override
 	public boolean equals(Object other) {
-		return other instanceof State && ((State) other).frontView.equals(frontView)
-				&& ((State) other).sideView.equals(sideView) && ((State) other).topView.equals(topView);
+		return other instanceof State
+				&& ((State) other).frontView.equals(frontView)
+				&& ((State) other).sideView.equals(sideView)
+				&& ((State) other).topView.equals(topView);
 	}
 }

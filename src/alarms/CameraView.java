@@ -10,12 +10,20 @@ import org.junit.Test;
 
 public class CameraView {
 	private final int[][] data;
+	private final int xDim, yDim;
 	private CameraDirection cameraDirection;
+	private List<int[][]> possibleShifts;
 
 	private CameraView(int x, int y, CameraDirection direction) {
 		data = new int[x][y];
+		xDim = x;
+		yDim = y;
 		cameraDirection = direction;
+	}
 
+	public static CameraView of(int x, int y) {
+		assert (x > 0 && y > 0);
+		return new CameraView(x, y, null);
 	}
 
 	public static CameraView of(int x, int y, CameraDirection direction) {
@@ -57,9 +65,9 @@ public class CameraView {
 		return data;
 	}
 
-	public boolean hasFloating() {
-		for (int i = 0; i < data.length; i++) {
-			for (int j = data.length - 1; j > 0; j--) {
+	boolean hasFloating() {
+		for (int i = 0; i < xDim; i++) {
+			for (int j = yDim - 1; j > 0; j--) {
 				if (data[i][j] == 0 && data[i][j - 1] == 1) {
 					return true;
 				}
@@ -68,10 +76,8 @@ public class CameraView {
 		return false;
 	}
 
-	public boolean isShiftFrom(CameraView cameraView) {
-		assert (cameraView.cameraDirection.equals(cameraDirection));
-		assert (cameraView.data.length == data.length);
-		assert (cameraView.data[0].length == data[0].length);
+	boolean isShiftFrom(CameraView cameraView) {
+
 		Iterator<int[][]> iter = possibleShiftedViews(cameraView.data).iterator();
 		while (iter.hasNext()) {
 			if (iter.next().equals(data)) {
@@ -82,20 +88,20 @@ public class CameraView {
 	}
 
 	// get all possible shifted views
-	private static List<int[][]> possibleShiftedViews(int[][] view) {
-		List<int[][]> views = new ArrayList<>();
+	static List<int[][]> possibleShiftedViews(int[][] checkView) {
+		List<int[][]> possibleShifts = new ArrayList<>();
 		int[][] container;
-		for (int i = 0; i <= view.length * 2; i++) {
-			for (int j = 0; j <= view[0].length * 2; j++) {
-				container = emptyContainer(view.length * 3, view[0].length * 3);
-				copyArray(view, container, i, j);
-				views.add(arrayRange(container, view.length, view[0].length, view.length * 2, view[0].length * 2));
+		for (int i = 0; i <= checkView.length * 2; i++) {
+			for (int j = 0; j <= checkView[0].length * 2; j++) {
+				container = emptyContainer(checkView.length * 3, checkView[0].length * 3);
+				copyArray(checkView, container, i, j);
+				possibleShifts.add(trimmedArray(container, checkView.length, checkView[0].length, checkView.length * 2, checkView[0].length * 2));
 			}
 		}
-		return views;
+		return possibleShifts;
 	}
 
-	private static int[][] emptyContainer(int rowNum, int colNum) {
+	static int[][] emptyContainer(int rowNum, int colNum) {
 		int[][] container = new int[rowNum][colNum];
 		for(int i = 0; i < container.length; i++) {
 			Arrays.fill(container[i], 0);
@@ -104,7 +110,7 @@ public class CameraView {
 	}
 
 	// copy 2d array
-	private static void copyArray(int[][] source, int[][] dest, int startI, int startJ) {
+	static void copyArray(int[][] source, int[][] dest, int startI, int startJ) {
 		for (int i = 0; i < source.length; i++) {
 			for (int j = 0; j < source[0].length; j++) {
 				dest[startI + i][startJ + j] = source[i][j];
@@ -113,7 +119,7 @@ public class CameraView {
 	}
 
 	// return a part of a 2d array
-	private static int[][] arrayRange(int[][] source, int startI, int startJ, int endI, int endJ) {
+	static int[][] trimmedArray(int[][] source, int startI, int startJ, int endI, int endJ) {
 		int[][] part = new int[endI - startI][endJ - startJ];
 		for (int i = startI; i < endI; i++) {
 			part[i - startI] = Arrays.copyOfRange(source[i], startJ, endJ);
@@ -123,7 +129,8 @@ public class CameraView {
 
 	@Override
 	public boolean equals(Object other) {
-		return other instanceof CameraView && ((CameraView) other).cameraDirection.equals(cameraDirection)
+		return other instanceof CameraView
+				&& ((CameraView) other).cameraDirection.equals(cameraDirection)
 				&& ((CameraView) other).data.equals(data);
 	}
 
@@ -169,7 +176,7 @@ public class CameraView {
 			}
 			System.out.println();
 			
-			int[][] temp = arrayRange(container, 3, 3, 6, 6);
+			int[][] temp = trimmedArray(container, 3, 3, 6, 6);
 			for(int i = 0; i < temp.length; i++) {
 				for(int j = 0; j < temp.length; j++) {
 					System.out.print(temp[i][j]);

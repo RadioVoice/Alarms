@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="11a4435d-bf94-4f11-a995-182195ca9f32" name="Default Changelist" comment="" />
+    <list default="true" id="11a4435d-bf94-4f11-a995-182195ca9f32" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/alarms/CameraView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/alarms/CameraView.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +16,10 @@
   </component>
   <component name="ProjectId" id="1TGPC0hATeu5lwHpr9i1Kdiyv8B" />
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
   </component>
   <component name="RecentsManager">
