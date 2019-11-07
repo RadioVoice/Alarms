@@ -1,32 +1,32 @@
-import java.util.Objects;
-
 public class State {
 
-	private CameraView view1;
-	private CameraView view2;
-	private CameraView view3;
+	private CameraView frontView;
+	private CameraView sideView;
+	private CameraView topView;
 
-	public State(CameraView view1, CameraView view2, CameraView view3) {
-		this.view1 = view1;
-		this.view2 = view2;
-		this.view3 = view3;
+	public State(CameraView front, CameraView side, CameraView top) {
+		this.frontView = front;
+		this.sideView = side;
+		this.topView = top;
 	}
 
-	public CameraView getView1() {
-		return this.view1;
+	public CameraView getFrontView() {
+		return this.frontView;
 	}
 
-	public CameraView getView2() {
-		return this.view2;
+	public CameraView getSideView() {
+		return this.sideView;
 	}
 
-	public CameraView getView3() {
-		return this.view3;
+	public CameraView getTopView() {
+		return this.topView;
 	}
 
 	@Override
 	public boolean equals(Object other) {
-		return other instanceof State && ((State) other).view1.equals(view1)
-				&& ((State) other).view2.equals(view2) && ((State) other).view3.equals(view3);
+		return other instanceof State &&
+				((State) other).frontView.equals(frontView)	&&
+				((State) other).sideView.equals(sideView) &&
+				((State) other).topView.equals(topView);
 	}
 }
