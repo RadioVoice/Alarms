@@ -1,5 +1,6 @@
 package alarms;
 
+import javax.naming.directory.InvalidAttributeValueException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class InputHandler {
     //  takes dimensions -> x, y, z
     //  takes rest of file and splits on space or line break -> states
 
-    private InputHandler(File file) throws FileNotFoundException {
+    private InputHandler(File file) throws FileNotFoundException, InvalidAttributeValueException {
         Scanner scan = new Scanner(file);
         x = Integer.parseInt(scan.findInLine("\\d"));
         y = Integer.parseInt(scan.findInLine("\\d"));

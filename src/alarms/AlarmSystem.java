@@ -7,8 +7,10 @@ import java.util.Objects;
 public class AlarmSystem {
     
 	private List<State> states = new ArrayList<>();
+    private List<CameraView> possibleShifts;
 
-	
+
+
     //correct state of boxes
 
     //Private constructor(List<alarms.State>)

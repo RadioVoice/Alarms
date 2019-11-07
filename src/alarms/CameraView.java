@@ -13,7 +13,6 @@ public class CameraView {
 	private final int xDim;
 	private final int yDim;
 	private CameraDirection cameraDirection;
-	private List<int[][]> possibleShifts;
 
 	private CameraView(int x, int y, CameraDirection direction) {
 		data = new int[x][y];
@@ -22,17 +21,17 @@ public class CameraView {
 		cameraDirection = direction;
 	}
 
-	public static CameraView of(int x, int y) {
+	public static CameraView of(int x, int y) throws AssertionError{
 		assert (x > 0 && y > 0);
 		return new CameraView(x, y, null);
 	}
 
-	public static CameraView of(int x, int y, CameraDirection direction) {
+	public static CameraView of(int x, int y, CameraDirection direction) throws AssertionError{
 		assert (x > 0 && y > 0);
 		return new CameraView(x, y, direction);
 	}
 
-	public static CameraView of(int x, int y, CameraDirection direction, String inputData) {
+	public static CameraView of(int x, int y, CameraDirection direction, String inputData) throws NullPointerException, AssertionError {
 		assert (x > 0 && y > 0);
 		Objects.requireNonNull(inputData);
 		Objects.requireNonNull(direction);
@@ -43,7 +42,7 @@ public class CameraView {
 
 		for (int j = 0; j < y; j++) {
 			for (int i = 0; i < x; i++) {
-				returnView.data[i][j] = inputBytes[byteIndex];
+				returnView.setValue(i, j, inputBytes[byteIndex]);
 			}
 		}
 
@@ -74,7 +73,8 @@ public class CameraView {
 		return yDim;
 	}
 
-	boolean hasFloating() {
+	boolean hasFloating(){
+		assert(cameraDirection != CameraDirection.TOP);
 		for (int i = 0; i < xDim; i++) {
 			for (int j = yDim - 1; j > 0; j--) {
 				if (data[i][j] == 0 && data[i][j - 1] == 1) {
@@ -103,8 +103,8 @@ public class CameraView {
 		for (int i = 0; i <= checkView.length * 2; i++) {
 			for (int j = 0; j <= checkView[0].length * 2; j++) {
 				container = emptyContainer(checkView.length * 3, checkView[0].length * 3);
-				copyArray(checkView, container, i, j);
-				possibleShifts.add(trimmedArray(container, checkView.length, checkView[0].length, checkView.length * 2, checkView[0].length * 2));
+				copyViewToLocation(checkView, container, i, j);
+				possibleShifts.add(trimmedView(container, checkView.length, checkView[0].length, checkView.length * 2, checkView[0].length * 2));
 			}
 		}
 		return possibleShifts;
@@ -119,7 +119,7 @@ public class CameraView {
 	}
 
 	// copy 2d array
-	static void copyArray(int[][] source, int[][] dest, int startI, int startJ) {
+	static void copyViewToLocation(int[][] source, int[][] dest, int startI, int startJ) {
 		for (int i = 0; i < source.length; i++) {
 			for (int j = 0; j < source[0].length; j++) {
 				dest[startI + i][startJ + j] = source[i][j];
@@ -128,7 +128,7 @@ public class CameraView {
 	}
 
 	// return a part of a 2d array
-	static int[][] trimmedArray(int[][] source, int startI, int startJ, int endI, int endJ) {
+	static int[][] trimmedView(int[][] source, int startI, int startJ, int endI, int endJ) {
 		int[][] part = new int[endI - startI][endJ - startJ];
 		for (int i = startI; i < endI; i++) {
 			part[i - startI] = Arrays.copyOfRange(source[i], startJ, endJ);
@@ -176,7 +176,7 @@ public class CameraView {
 		
 		@Test
 		public void copyArrayTest() {
-			copyArray(view, container, 3, 3);
+			copyViewToLocation(view, container, 3, 3);
 			for(int i = 0; i < container.length; i++) {
 				for(int j = 0; j < container.length; j++) {
 					System.out.print(container[i][j]);
@@ -185,7 +185,7 @@ public class CameraView {
 			}
 			System.out.println();
 			
-			int[][] temp = trimmedArray(container, 3, 3, 6, 6);
+			int[][] temp = trimmedView(container, 3, 3, 6, 6);
 			for(int i = 0; i < temp.length; i++) {
 				for(int j = 0; j < temp.length; j++) {
 					System.out.print(temp[i][j]);
