@@ -1,5 +1,10 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class AlarmSystem {
-    //private List of States
+    
+	private List<State> states = new ArrayList<>();
+	
     //correct state of boxes
 
     //Private constructor(List<State>)
