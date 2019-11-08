@@ -11,13 +11,7 @@ public class CameraView {
 	private final int yDim;
 	private CameraDirection cameraDirection;
 
-	private CameraView(int x, int y, CameraDirection direction) {
-		data = new int[x][y];
-		xDim = x;
-		yDim = y;
-		cameraDirection = direction;
-	}
-
+	// private constructor
 	private CameraView(CameraDirection direction, int[][] inputData) {
 		data = inputData;
 		xDim = data.length;
@@ -25,71 +19,15 @@ public class CameraView {
 		cameraDirection = direction;
 	}
 
-	public static CameraView of(int x, int y) throws AssertionError {
-		assert (x > 0 && y > 0);
-		return new CameraView(x, y, null);
-	}
-
-	public static CameraView of(int x, int y, CameraDirection direction) throws AssertionError {
-		assert (x > 0 && y > 0);
-		return new CameraView(x, y, direction);
-	}
-
-	public static CameraView of(int x, int y, CameraDirection direction, String inputData)
-			throws NullPointerException, AssertionError, IllegalArgumentException {
-		assert (x > 0 && y > 0);
+	// public constructor
+	public static CameraView of(CameraDirection direction, int[][] inputData) throws NullPointerException {
 		Objects.requireNonNull(inputData);
 		Objects.requireNonNull(direction);
-
-		CameraView returnView = new CameraView(x, y, direction);
-		byte[] inputBytes = inputData.getBytes();
-		int byteIndex = 0;
-
-		for (int j = 0; j < y; j++) {
-			for (int i = 0; i < x; i++) {
-				checkBytesValidity(inputBytes[byteIndex]);
-				returnView.setValue(i, j, inputBytes[byteIndex] - '0');
-				byteIndex++;
-			}
-		}
-		returnView.removeFloating();
-		return returnView;
-	}
-
-	public static CameraView of(CameraDirection direction, int[][] inputData)
-			throws NullPointerException, IllegalArgumentException {
-		Objects.requireNonNull(inputData);
-		Objects.requireNonNull(direction);
-		checkdataValidity(inputData);
 		return new CameraView(direction, inputData);
 	}
 
-	private static void checkBytesValidity(byte inputByte) {
-		if (inputByte != '0' || inputByte != '1') {
-			throw new IllegalArgumentException("input must be 0 or 1");
-		}
-	}
-
-	private static void checkdataValidity(int[][] inputData) {
-		for (int i = 0; i < inputData.length; i++) {
-			for (int j = 0; j < inputData[0].length; j++) {
-				if (inputData[i][j] != '0' || inputData[i][j] != '1') {
-					throw new IllegalArgumentException("input must be 0 or 1");
-				}
-			}
-		}
-	}
-
-	private void setValue(int x, int y, int value) {
-		data[x][y] = value;
-	}
-
-	public int getValue(int x, int y) {
-		return data[x][y];
-	}
-
 	public CameraDirection getCameraDirection() {
-		return this.cameraDirection;
+		return cameraDirection;
 	}
 
 	public int[][] getData() {
@@ -105,13 +43,12 @@ public class CameraView {
 	}
 
 	// remove floating box
-	private void removeFloating() {
-		if (cameraDirection != CameraDirection.TOP) {
-			for (int i = 0; i < xDim; i++) {
-				for (int j = yDim - 1; j > 0; j--) {
-					if (data[i][j] == 0 && data[i][j - 1] == 1) {
-						data[i][j - 1] = 0;
-					}
+	public void removeFloating() {
+		assert cameraDirection != CameraDirection.TOP;
+		for (int i = 0; i < xDim; i++) {
+			for (int j = yDim - 1; j > 0; j--) {
+				if (data[i][j] == 0 && data[i][j - 1] == 1) {
+					data[i][j - 1] = 0;
 				}
 			}
 		}

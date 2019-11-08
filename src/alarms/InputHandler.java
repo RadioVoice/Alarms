@@ -2,8 +2,8 @@ package alarms;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class InputHandler {
@@ -30,13 +30,46 @@ public class InputHandler {
 
         while(scan.hasNextLine()) {
             String[] frameSet = scan.nextLine().split(" ");
-            CameraView front = CameraView.of(xDim, zDim, CameraDirection.FRONT, frameSet[0]);
-            CameraView side = CameraView.of(yDim, zDim, CameraDirection.SIDE, frameSet[1]);
-            CameraView top = CameraView.of(xDim, yDim, CameraDirection.TOP, frameSet[2]);
+            int[][] frontData = dataFromInput(xDim, zDim, frameSet[0]);
+            int[][] sideData = dataFromInput(yDim, zDim, frameSet[1]);
+            int[][] topData = dataFromInput(xDim, yDim, frameSet[2]);
+            CameraView front = CameraView.of(CameraDirection.FRONT, frontData);
+            CameraView side = CameraView.of(CameraDirection.SIDE, sideData);
+            CameraView top = CameraView.of(CameraDirection.TOP, topData);
             stateList.add(State.of(front, side, top));
         }
         return new InputHandler(stateList, xDim, yDim, zDim);
     }
+    
+    // convert a string to a 2D array with given row and column numbers
+    private static int[][] dataFromInput(int x, int y, String inputData) throws NullPointerException, AssertionError, IllegalArgumentException {
+		Objects.requireNonNull(x);
+		Objects.requireNonNull(y);
+		Objects.requireNonNull(inputData);
+		assert (x > 0 && y > 0);
+		assert (inputData.length() == x * y);
+
+		byte[] inputBytes = inputData.getBytes();
+		int byteIndex = 0;
+		int[][] returnData = new int[x][y];
+
+		for (int i = 0; i < x; i++) {
+			for (int j = 0; j < y; j++) {
+				checkBytesValidity(inputBytes[byteIndex]);
+				returnData[i][j] = inputBytes[byteIndex] - '0';
+				byteIndex++;
+			}
+		}
+		
+		return returnData;
+    }
+    
+    // check whether inputByte only is 0 or 1
+    private static void checkBytesValidity(byte inputByte) {
+		if (inputByte != '0' || inputByte != '1') {
+			throw new IllegalArgumentException("input must be 0 or 1");
+		}
+	}
 
     //boolean checkValidInput()
     //In any of these cases, throw invalid input exception

@@ -11,8 +11,8 @@ public class AlarmSystem {
 	private EnumMap<CameraDirection, CameraView> originalViewMap;
 	private EnumMap<CameraDirection, List<CameraView>> possibleShiftsMap;
 
-	// private constructor
-	private AlarmSystem(List<State> states) {
+	// constructor
+	public AlarmSystem(List<State> states) {
 		this.states = states;
 		originalViewMap = states.get(0).getViewMap();
 		EnumSet.allOf(CameraDirection.class).forEach(direction -> possibleShiftsMap.put(direction,

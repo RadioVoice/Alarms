@@ -13,6 +13,8 @@ public class State {
 	}
 
 	public static State of(CameraView front, CameraView side, CameraView top) {
+		front.removeFloating();
+		side.removeFloating();
 		return new State(front, side, top);
 	}
 
