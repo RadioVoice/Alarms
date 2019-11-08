@@ -8,18 +8,18 @@ import java.util.Scanner;
 
 public class InputHandler {
     private final int x, y, z;
-    private ArrayList<State> states;
+    private ArrayList<Frame> frames;
 
-    private InputHandler(ArrayList<State> stateList, int xDim, int yDim, int zDim) {
+    private InputHandler(ArrayList<Frame> frameList, int xDim, int yDim, int zDim) {
         x = xDim;
         y = yDim;
         z = zDim;
-        states = stateList;
+        frames = frameList;
     }
 
     public static InputHandler of(File file) throws FileNotFoundException{
         int xDim, yDim, zDim;
-        ArrayList<State> stateList = new ArrayList<State>();
+        ArrayList<Frame> frameList = new ArrayList<Frame>();
 
         Scanner scan = new Scanner(file);
         requireValidInput(scan);
@@ -36,9 +36,9 @@ public class InputHandler {
             CameraView front = CameraView.of(CameraDirection.FRONT, frontData);
             CameraView side = CameraView.of(CameraDirection.SIDE, sideData);
             CameraView top = CameraView.of(CameraDirection.TOP, topData);
-            stateList.add(State.of(front, side, top));
+            frameList.add(Frame.of(front, side, top));
         }
-        return new InputHandler(stateList, xDim, yDim, zDim);
+        return new InputHandler(frameList, xDim, yDim, zDim);
     }
     
     // convert a string to a 2D array with given row and column numbers
@@ -64,7 +64,7 @@ public class InputHandler {
 		return returnData;
     }
     
-    // check whether inputByte only is 0 or 1
+    // check whether inputByte only is f0 or 1
     private static void checkBytesValidity(byte inputByte) {
 		if (inputByte != '0' || inputByte != '1') {
 			throw new IllegalArgumentException("input must be 0 or 1");
@@ -91,8 +91,8 @@ public class InputHandler {
         }
     }
 
-    ArrayList<State> getStates(){
-        return states;
+    ArrayList<Frame> getFrames(){
+        return frames;
     }
     int getX(){
         return x;

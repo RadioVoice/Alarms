@@ -7,14 +7,14 @@ import java.util.List;
 
 public class AlarmSystem {
 
-	private List<State> states = new ArrayList<>();
+	private List<Frame> frames = new ArrayList<>();
 	private EnumMap<CameraDirection, CameraView> originalViewMap;
 	private EnumMap<CameraDirection, List<CameraView>> possibleShiftsMap;
 
 	// constructor
-	public AlarmSystem(List<State> states) {
-		this.states = states;
-		originalViewMap = states.get(0).getViewMap();
+	public AlarmSystem(List<Frame> frames) {
+		this.frames = frames;
+		originalViewMap = frames.get(0).getViewMap();
 		EnumSet.allOf(CameraDirection.class).forEach(direction -> possibleShiftsMap.put(direction,
 				CameraView.possibleShiftedViews(originalViewMap.get(direction))));
 	}
@@ -33,7 +33,7 @@ public class AlarmSystem {
 
 	// check if the view equals to or is a shift from the original one
 	private boolean isAlarmInDirection(CameraDirection direction, int index) {
-		CameraView view = states.get(index).getViewMap().get(direction);
+		CameraView view = frames.get(index).getViewMap().get(direction);
 		if (!view.equals(originalViewMap.get(direction)) && !possibleShiftsMap.get(direction).contains(view)) {
 			return isViewChangePermanent(direction, index);
 		}
@@ -44,8 +44,8 @@ public class AlarmSystem {
 	private boolean isViewChangePermanent(CameraDirection direction, int index) {
 		CameraView view;
 		int i = index + 1;
-		while (i < states.size() && i <= index + 5) {
-			view = states.get(i).getViewMap().get(direction);
+		while (i < frames.size() && i <= index + 5) {
+			view = frames.get(i).getViewMap().get(direction);
 			if (view.equals(originalViewMap.get(direction)) || possibleShiftsMap.get(direction).contains(view)) {
 				return false;
 			}

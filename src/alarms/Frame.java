@@ -2,20 +2,20 @@ package alarms;
 
 import java.util.EnumMap;
 
-public class State {
+public class Frame {
 
 	private EnumMap<CameraDirection, CameraView> viewMap;
 
-	private State(CameraView front, CameraView side, CameraView top) {
+	private Frame(CameraView front, CameraView side, CameraView top) {
 		viewMap.put(CameraDirection.FRONT, front);
 		viewMap.put(CameraDirection.SIDE, side);
 		viewMap.put(CameraDirection.TOP, top);
 	}
 
-	public static State of(CameraView front, CameraView side, CameraView top) {
+	public static Frame of(CameraView front, CameraView side, CameraView top) {
 		front.removeFloating();
 		side.removeFloating();
-		return new State(front, side, top);
+		return new Frame(front, side, top);
 	}
 
 	public EnumMap<CameraDirection, CameraView> getViewMap() {
