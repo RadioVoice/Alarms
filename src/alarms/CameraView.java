@@ -87,7 +87,7 @@ public class CameraView {
 
 	boolean isShiftFrom(CameraView cameraView) {
 
-		Iterator<int[][]> iter = possibleShiftedViews(cameraView.data).iterator();
+		Iterator<int[][]> iter = possibleShiftedViews(cameraView).iterator();
 		while (iter.hasNext()) {
 			if (iter.next().equals(data)) {
 				return true;
@@ -97,20 +97,20 @@ public class CameraView {
 	}
 
 	// get all possible shifted views
-	static List<int[][]> possibleShiftedViews(int[][] checkView) {
+	static List<int[][]> possibleShiftedViews(CameraView view) {
 		List<int[][]> possibleShifts = new ArrayList<>();
 		int[][] container;
-		for (int i = 0; i <= checkView.length * 2; i++) {
-			for (int j = 0; j <= checkView[0].length * 2; j++) {
-				container = emptyContainer(checkView.length * 3, checkView[0].length * 3);
-				copyViewToLocation(checkView, container, i, j);
-				possibleShifts.add(trimmedView(container, checkView.length, checkView[0].length, checkView.length * 2, checkView[0].length * 2));
+		for (int i = 0; i <= view.xDim * 2 - 2; i++) {
+			for (int j = 0; j <= view.yDim * 2 - 2; j++) {
+				container = emptyContainer(view.xDim * 3 - 2, view.yDim * 3 - 2);
+				copyViewToLocation(view.data, container, i, j);
+				possibleShifts.add(trimmedView(container, view.xDim - 1, view.yDim - 1, view.xDim * 2 - 1, view.yDim * 2 - 1));
 			}
 		}
 		return possibleShifts;
 	}
 
-	static int[][] emptyContainer(int rowNum, int colNum) {
+	private static int[][] emptyContainer(int rowNum, int colNum) {
 		int[][] container = new int[rowNum][colNum];
 		for(int i = 0; i < container.length; i++) {
 			Arrays.fill(container[i], 0);
@@ -119,7 +119,7 @@ public class CameraView {
 	}
 
 	// copy 2d array
-	static void copyViewToLocation(int[][] source, int[][] dest, int startI, int startJ) {
+	private static void copyViewToLocation(int[][] source, int[][] dest, int startI, int startJ) {
 		for (int i = 0; i < source.length; i++) {
 			for (int j = 0; j < source[0].length; j++) {
 				dest[startI + i][startJ + j] = source[i][j];
@@ -128,7 +128,7 @@ public class CameraView {
 	}
 
 	// return a part of a 2d array
-	static int[][] trimmedView(int[][] source, int startI, int startJ, int endI, int endJ) {
+	private static int[][] trimmedView(int[][] source, int startI, int startJ, int endI, int endJ) {
 		int[][] part = new int[endI - startI][endJ - startJ];
 		for (int i = startI; i < endI; i++) {
 			part[i - startI] = Arrays.copyOfRange(source[i], startJ, endJ);
@@ -141,64 +141,6 @@ public class CameraView {
 		return other instanceof CameraView
 				&& ((CameraView) other).cameraDirection.equals(cameraDirection)
 				&& ((CameraView) other).data.equals(data);
-	}
-
-	public static class CameraViewPrivateMethodsTest {
-		private int[][] view = { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } };
-		private int[][] container = emptyContainer(9, 9);
-
-		@Test
-		public void possibleShiftedViewsTest() {
-//			Iterator<int[][]> iter = possibleShiftedViews(view).iterator();
-//			while (iter.hasNext()) {
-//				int[][] temp = iter.next();
-//				for(int i = 0; i < temp.length; i++) {
-//					for(int j = 0; j < temp.length; j++) {
-//						System.out.print(temp[i][j]);
-//					}
-//					System.out.println();
-//				}
-//				System.out.println();
-//			}
-		}
-		
-		@Test
-		public void emptyContainerTest() {
-			int[][] temp = emptyContainer(9, 9);
-			for(int i = 0; i < temp.length; i++) {
-				for(int j = 0; j < temp.length; j++) {
-					System.out.print(temp[i][j]);
-				}
-				System.out.println();
-			}
-			System.out.println();
-		}
-		
-		@Test
-		public void copyArrayTest() {
-			copyViewToLocation(view, container, 3, 3);
-			for(int i = 0; i < container.length; i++) {
-				for(int j = 0; j < container.length; j++) {
-					System.out.print(container[i][j]);
-				}
-				System.out.println();
-			}
-			System.out.println();
-			
-			int[][] temp = trimmedView(container, 3, 3, 6, 6);
-			for(int i = 0; i < temp.length; i++) {
-				for(int j = 0; j < temp.length; j++) {
-					System.out.print(temp[i][j]);
-				}
-				System.out.println();
-			}
-			System.out.println();
-		}
-		
-		@Test
-		public void arrayRangeTest() {
-			
-		}
 	}
 
 }
