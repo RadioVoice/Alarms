@@ -42,18 +42,6 @@ public class CameraView {
 		return yDim;
 	}
 
-	// remove floating box
-	public void removeFloating() {
-		assert cameraDirection != CameraDirection.TOP;
-		for (int i = 0; i < xDim; i++) {
-			for (int j = yDim - 1; j > 0; j--) {
-				if (data[i][j] == 0 && data[i][j - 1] == 1) {
-					data[i][j - 1] = 0;
-				}
-			}
-		}
-	}
-
 	// get all possible shifted views
 	static List<CameraView> possibleShiftedViews(CameraView view) {
 		List<CameraView> possibleShifts = new ArrayList<>();

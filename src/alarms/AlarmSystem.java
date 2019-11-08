@@ -21,14 +21,12 @@ public class AlarmSystem {
 
 	// check front, side, top view separately for each frame.
 	boolean shouldAlarmSound(int index) {
-		boolean returnBoolean = false;
 		for (CameraDirection direction : CameraDirection.values()) { 
-			returnBoolean = returnBoolean || isAlarmInDirection(direction, index);
-			if (returnBoolean) {
-				break;
+			if (isAlarmInDirection(direction, index)) {
+				return true;
 			}
         }
-		return returnBoolean;
+		return false;
 	}
 
 	// check if the view equals to or is a shift from the original one

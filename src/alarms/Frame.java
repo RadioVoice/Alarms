@@ -13,8 +13,6 @@ public class Frame {
 	}
 
 	public static Frame of(CameraView front, CameraView side, CameraView top) {
-		front.removeFloating();
-		side.removeFloating();
 		return new Frame(front, side, top);
 	}
 
