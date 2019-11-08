@@ -6,8 +6,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
-import org.junit.Test;
-
 public class CameraView {
 	private final int[][] data;
 	private final int xDim;
@@ -21,17 +19,25 @@ public class CameraView {
 		cameraDirection = direction;
 	}
 
-	public static CameraView of(int x, int y) throws AssertionError{
+	private CameraView(CameraDirection direction, int[][] inputData) {
+		data = inputData;
+		xDim = data.length;
+		yDim = data[0].length;
+		cameraDirection = direction;
+	}
+
+	public static CameraView of(int x, int y) throws AssertionError {
 		assert (x > 0 && y > 0);
 		return new CameraView(x, y, null);
 	}
 
-	public static CameraView of(int x, int y, CameraDirection direction) throws AssertionError{
+	public static CameraView of(int x, int y, CameraDirection direction) throws AssertionError {
 		assert (x > 0 && y > 0);
 		return new CameraView(x, y, direction);
 	}
 
-	public static CameraView of(int x, int y, CameraDirection direction, String inputData) throws NullPointerException, AssertionError {
+	public static CameraView of(int x, int y, CameraDirection direction, String inputData)
+			throws NullPointerException, AssertionError, IllegalArgumentException {
 		assert (x > 0 && y > 0);
 		Objects.requireNonNull(inputData);
 		Objects.requireNonNull(direction);
@@ -42,14 +48,39 @@ public class CameraView {
 
 		for (int j = 0; j < y; j++) {
 			for (int i = 0; i < x; i++) {
-				returnView.setValue(i, j, inputBytes[byteIndex]);
+				checkBytesValidity(inputBytes[byteIndex]);
+				returnView.setValue(i, j, inputBytes[byteIndex] - '0');
+				byteIndex++;
 			}
 		}
-
 		return returnView;
 	}
 
-	public void setValue(int x, int y, int value) {
+	public static CameraView of(CameraDirection direction, int[][] inputData)
+			throws NullPointerException, IllegalArgumentException {
+		Objects.requireNonNull(inputData);
+		Objects.requireNonNull(direction);
+		checkdataValidity(inputData);
+		return new CameraView(direction, inputData);
+	}
+
+	private static void checkBytesValidity(byte inputByte) {
+		if (inputByte != '0' || inputByte != '1') {
+			throw new IllegalArgumentException("input must be 0 or 1");
+		}
+	}
+	
+	private static void checkdataValidity(int[][] inputData) {
+		for (int i = 0; i < inputData.length; i++) {
+			for (int j = 0; j < inputData[0].length; j++) {
+				if (inputData[i][j] != '0' || inputData[i][j] != '1') {
+					throw new IllegalArgumentException("input must be 0 or 1");
+				}
+			}
+		}
+	}
+
+	private void setValue(int x, int y, int value) {
 		data[x][y] = value;
 	}
 
@@ -73,8 +104,8 @@ public class CameraView {
 		return yDim;
 	}
 
-	boolean hasFloating(){
-		assert(cameraDirection != CameraDirection.TOP);
+	boolean hasFloating() {
+		assert (cameraDirection != CameraDirection.TOP);
 		for (int i = 0; i < xDim; i++) {
 			for (int j = yDim - 1; j > 0; j--) {
 				if (data[i][j] == 0 && data[i][j - 1] == 1) {
@@ -87,9 +118,9 @@ public class CameraView {
 
 	boolean isShiftFrom(CameraView cameraView) {
 
-		Iterator<int[][]> iter = possibleShiftedViews(cameraView).iterator();
+		Iterator<CameraView> iter = possibleShiftedViews(cameraView).iterator();
 		while (iter.hasNext()) {
-			if (iter.next().equals(data)) {
+			if (iter.next().data.equals(data)) {
 				return true;
 			}
 		}
@@ -97,22 +128,24 @@ public class CameraView {
 	}
 
 	// get all possible shifted views
-	static List<int[][]> possibleShiftedViews(CameraView view) {
-		List<int[][]> possibleShifts = new ArrayList<>();
+	static List<CameraView> possibleShiftedViews(CameraView view) {
+		List<CameraView> possibleShifts = new ArrayList<>();
 		int[][] container;
 		for (int i = 0; i <= view.xDim * 2 - 2; i++) {
 			for (int j = 0; j <= view.yDim * 2 - 2; j++) {
 				container = emptyContainer(view.xDim * 3 - 2, view.yDim * 3 - 2);
 				copyViewToLocation(view.data, container, i, j);
-				possibleShifts.add(trimmedView(container, view.xDim - 1, view.yDim - 1, view.xDim * 2 - 1, view.yDim * 2 - 1));
+				possibleShifts.add(
+						CameraView.of(view.cameraDirection,trimmedView(container, view.xDim - 1, view.yDim - 1, view.xDim * 2 - 1, view.yDim * 2 - 1)));
 			}
 		}
 		return possibleShifts;
 	}
 
+	// return emptyContainer
 	private static int[][] emptyContainer(int rowNum, int colNum) {
 		int[][] container = new int[rowNum][colNum];
-		for(int i = 0; i < container.length; i++) {
+		for (int i = 0; i < container.length; i++) {
 			Arrays.fill(container[i], 0);
 		}
 		return container;
@@ -138,8 +171,7 @@ public class CameraView {
 
 	@Override
 	public boolean equals(Object other) {
-		return other instanceof CameraView
-				&& ((CameraView) other).cameraDirection.equals(cameraDirection)
+		return other instanceof CameraView && ((CameraView) other).cameraDirection.equals(cameraDirection)
 				&& ((CameraView) other).data.equals(data);
 	}
 
