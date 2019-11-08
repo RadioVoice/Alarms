@@ -2,7 +2,6 @@ package alarms;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -53,6 +52,7 @@ public class CameraView {
 				byteIndex++;
 			}
 		}
+		returnView.removeFloating();
 		return returnView;
 	}
 
@@ -69,7 +69,7 @@ public class CameraView {
 			throw new IllegalArgumentException("input must be 0 or 1");
 		}
 	}
-	
+
 	private static void checkdataValidity(int[][] inputData) {
 		for (int i = 0; i < inputData.length; i++) {
 			for (int j = 0; j < inputData[0].length; j++) {
@@ -104,27 +104,17 @@ public class CameraView {
 		return yDim;
 	}
 
-	boolean hasFloating() {
-		assert (cameraDirection != CameraDirection.TOP);
-		for (int i = 0; i < xDim; i++) {
-			for (int j = yDim - 1; j > 0; j--) {
-				if (data[i][j] == 0 && data[i][j - 1] == 1) {
-					return true;
+	// remove floating box
+	private void removeFloating() {
+		if (cameraDirection != CameraDirection.TOP) {
+			for (int i = 0; i < xDim; i++) {
+				for (int j = yDim - 1; j > 0; j--) {
+					if (data[i][j] == 0 && data[i][j - 1] == 1) {
+						data[i][j - 1] = 0;
+					}
 				}
 			}
 		}
-		return false;
-	}
-
-	boolean isShiftFrom(CameraView cameraView) {
-
-		Iterator<CameraView> iter = possibleShiftedViews(cameraView).iterator();
-		while (iter.hasNext()) {
-			if (iter.next().data.equals(data)) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 	// get all possible shifted views
@@ -135,8 +125,8 @@ public class CameraView {
 			for (int j = 0; j <= view.yDim * 2 - 2; j++) {
 				container = emptyContainer(view.xDim * 3 - 2, view.yDim * 3 - 2);
 				copyViewToLocation(view.data, container, i, j);
-				possibleShifts.add(
-						CameraView.of(view.cameraDirection,trimmedView(container, view.xDim - 1, view.yDim - 1, view.xDim * 2 - 1, view.yDim * 2 - 1)));
+				possibleShifts.add(CameraView.of(view.cameraDirection,
+						trimmedView(container, view.xDim - 1, view.yDim - 1, view.xDim * 2 - 1, view.yDim * 2 - 1)));
 			}
 		}
 		return possibleShifts;

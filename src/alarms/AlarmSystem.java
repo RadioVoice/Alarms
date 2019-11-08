@@ -1,71 +1,58 @@
 package alarms;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.EnumSet;
 import java.util.List;
-import java.util.Objects;
 
 public class AlarmSystem {
 
 	private List<State> states = new ArrayList<>();
-	private List<CameraView> frontPossibleShifts;
-	private List<CameraView> sidePossibleShifts;
-	private List<CameraView> topPossibleShifts;
+	private EnumMap<CameraDirection, CameraView> originalViewMap;
+	private EnumMap<CameraDirection, List<CameraView>> possibleShiftsMap;
 
-	// correct state of boxes
-
+	// private constructor
 	private AlarmSystem(List<State> states) {
 		this.states = states;
-		frontPossibleShifts = CameraView.possibleShiftedViews(states.get(0).getFrontView());
-		sidePossibleShifts = CameraView.possibleShiftedViews(states.get(0).getSideView());
-		topPossibleShifts = CameraView.possibleShiftedViews(states.get(0).getTopView());
+		originalViewMap = states.get(0).getViewMap();
+		EnumSet.allOf(CameraDirection.class).forEach(direction -> possibleShiftsMap.put(direction,
+				CameraView.possibleShiftedViews(originalViewMap.get(direction))));
 	}
 
-	// main method(text file)
-	// TRY {Creates inputhandler using text file} {CATCH invalid input exception}
-	// print "invalid" and System.exit(-1)
-	// Create alarms.AlarmSystem from alarms.InputHandler.states()
-	// loop over the list of states:
-	// check for changes in this state compared to previous
-	// if yes, run through tests to determine cause
-	// if alarm should sound, print "true" and System.exit(0)
-	// if no, all good, continue loop
-	// End of loop print "false"
-
+	// check front, side, top view separately for each frame.
 	boolean shouldAlarmSound(int index) {
-		State state = states.get(index);
-    	return isAlarmInFront(state.getFrontView(), index) && isAlarmInSide(state.getSideView(), index) && isAlarmInTop(state.getTopView(), index);
-    }
-	
-	private boolean isAlarmInFront(CameraView view, int index) {
-		if(!view.equals(states.get(index - 1))) {
-			
-		}
-		return true;
+		boolean returnBoolean = false;
+		for (CameraDirection direction : CameraDirection.values()) { 
+			returnBoolean = returnBoolean || isAlarmInDirection(direction, index);
+			if (returnBoolean) {
+				break;
+			}
+        }
+		return returnBoolean;
 	}
-	// runs through tests for correct camera directions, depending on tests either
-	// true or false
-	// if only error is shift, return false
-	// if change is not permanent, return false
-	// otherwise, return true
 
-	public boolean isChangePermanent(List<State> states, int index) {
-		Objects.requireNonNull(states);
-		Objects.requireNonNull(index);
+	// check if the view equals to or is a shift from the original one
+	private boolean isAlarmInDirection(CameraDirection direction, int index) {
+		CameraView view = states.get(index).getViewMap().get(direction);
+		if (!view.equals(originalViewMap.get(direction)) && !possibleShiftsMap.get(direction).contains(view)) {
+			return isViewChangePermanent(direction, index);
+		}
+		return false;
+	}
+
+	// check if the view change permanently
+	private boolean isViewChangePermanent(CameraDirection direction, int index) {
+		CameraView view;
 		int i = index + 1;
 		while (i < states.size() && i <= index + 5) {
-			if (states.get(index).equals(states.get(i))) {
+			view = states.get(i).getViewMap().get(direction);
+			if (view.equals(originalViewMap.get(direction)) || possibleShiftsMap.get(direction).contains(view)) {
 				return false;
 			}
 		}
 		return true;
 	}
-	// look ahead in the list of states and see if changes back to original, if not
-	// then continue
-
-	// boolean isCameraShifted()
-	// compares state to all shifts of the correct state, if it is any shift then
-	// return true
-
+	
 	// boolean isCameraOff(alarms.State)
 	// checks for any null CameraViews in the state
 }
