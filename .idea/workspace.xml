@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="11a4435d-bf94-4f11-a995-182195ca9f32" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Alarms/alarms/CameraView$TESTHOOK.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alarms/alarms/CameraView$TESTHOOK.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Alarms/alarms/CameraView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alarms/alarms/CameraView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Alarms/alarms/CameraViewTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alarms/alarms/CameraViewTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Alarms/alarms/Frame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alarms/alarms/Frame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Alarms/alarms/InputHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alarms/alarms/InputHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/alarms/AlarmSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/alarms/AlarmSystem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/alarms/InputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/alarms/InputHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test1.txt" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -83,7 +88,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

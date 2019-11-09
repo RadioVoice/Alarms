@@ -82,6 +82,7 @@ public class AlarmSystem {
 			if (view.equals(originalViewMap.get(direction)) || possibleShiftsMap.get(direction).contains(view)) {
 				return false;
 			}
+			i++;
 		}
 		return true;
 	}
