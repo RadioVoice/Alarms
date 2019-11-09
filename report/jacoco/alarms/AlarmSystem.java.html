@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AlarmSystem.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">alarms</a> &gt; <a href="index.source.html" class="el_package">alarms</a> &gt; <span class="el_source">AlarmSystem.java</span></div><h1>AlarmSystem.java</h1><pre class="source lang-java linenums">package alarms;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.EnumMap;
+import java.util.EnumSet;
+import java.util.List;
+import java.util.Objects;
+
+public class AlarmSystem {
+
+	private List&lt;Frame&gt; frames;
+	private EnumMap&lt;CameraDirection, CameraView&gt; originalViewMap;
+	private EnumMap&lt;CameraDirection, List&lt;CameraView&gt;&gt; possibleShiftsMap;
+
+	// constructor
+<span class="fc" id="L17">	private AlarmSystem(List&lt;Frame&gt; frames, EnumMap&lt;CameraDirection, CameraView&gt; original, EnumMap&lt;CameraDirection, List&lt;CameraView&gt;&gt; shifts) {</span>
+<span class="fc" id="L18">		this.frames = frames;</span>
+<span class="fc" id="L19">		originalViewMap = original;</span>
+<span class="fc" id="L20">		possibleShiftsMap = shifts;</span>
+<span class="fc" id="L21">	}</span>
+
+	public static AlarmSystem of(List&lt;Frame&gt; frames) {
+<span class="fc" id="L24">        Objects.requireNonNull(frames);</span>
+<span class="fc" id="L25">        EnumMap&lt;CameraDirection, CameraView&gt; original = frames.get(0).getViewMap();</span>
+<span class="fc" id="L26">        EnumMap&lt;CameraDirection, List&lt;CameraView&gt;&gt; shifts = new EnumMap&lt;&gt;(CameraDirection.class);</span>
+<span class="fc" id="L27">        EnumSet.allOf(CameraDirection.class).forEach(direction -&gt; shifts.put(direction,</span>
+<span class="fc" id="L28">                CameraView.possibleShiftedViews(original.get(direction))));</span>
+
+<span class="fc" id="L30">        return new AlarmSystem(frames, original, shifts);</span>
+    }
+
+	public static void main(String[] args){
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">	    if (args.length != 1){</span>
+<span class="nc" id="L35">	        System.out.println(&quot;invalid&quot;);</span>
+<span class="nc" id="L36">            System.exit(-1);</span>
+        }
+<span class="fc" id="L38">	    String filePath = args[0];</span>
+<span class="fc" id="L39">	    boolean finished = false;</span>
+	    try{
+<span class="fc" id="L41">            InputHandler handler = InputHandler.of(new File(filePath));</span>
+<span class="fc" id="L42">            AlarmSystem as = AlarmSystem.of(handler.getFrames());</span>
+
+<span class="fc bfc" id="L44" title="All 2 branches covered.">            for (int i = 0; i &lt; as.getFrames().size(); i++){</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">                if (as.shouldAlarmSound(i)){</span>
+<span class="fc" id="L46">                    System.out.println(&quot;true&quot;);</span>
+<span class="fc" id="L47">                    finished=true;</span>
+<span class="fc" id="L48">                    break;</span>
+                }
+            }
+<span class="fc" id="L51">        } catch (IOException e){</span>
+<span class="fc" id="L52">	        System.out.println(&quot;invalid&quot;);</span>
+<span class="fc" id="L53">	        finished=true;</span>
+<span class="fc" id="L54">        }</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">	    if(!finished){</span>
+<span class="fc" id="L56">			System.out.println(&quot;false&quot;);</span>
+		}
+<span class="fc" id="L58">    }</span>
+
+	// check front, side, top view separately for each frame.
+	boolean shouldAlarmSound(int index) {
+<span class="fc bfc" id="L62" title="All 2 branches covered.">		for (CameraDirection direction : CameraDirection.values()) { </span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">			if (isAlarmInDirection(direction, index)) {</span>
+<span class="fc" id="L64">				return true;</span>
+			}
+        }
+<span class="fc" id="L67">		return false;</span>
+	}
+
+	// check if the view equals to or is a shift from the original one
+	private boolean isAlarmInDirection(CameraDirection direction, int index) {
+<span class="fc" id="L72">		CameraView view = viewFromFrames(direction, index);</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">		if (!isOriginalOrShift(direction, view)) {</span>
+<span class="fc" id="L74">			return isViewChangePermanent(direction, index);</span>
+		}
+<span class="fc" id="L76">		return false;</span>
+	}
+
+	// check if the view change permanently
+	private boolean isViewChangePermanent(CameraDirection direction, int index) {
+		CameraView view;
+<span class="fc" id="L82">		int i = index + 1;</span>
+<span class="pc bpc" id="L83" title="1 of 4 branches missed.">		while (i &lt; frames.size() &amp;&amp; i &lt;= index + 5) {</span>
+<span class="fc" id="L84">			view = viewFromFrames(direction, i);</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">			if (isOriginalOrShift(direction, view)) {</span>
+<span class="fc" id="L86">				return false;</span>
+			}
+<span class="fc" id="L88">			i++;</span>
+		}
+<span class="fc" id="L90">		return true;</span>
+	}
+
+	private CameraView viewFromFrames(CameraDirection cd, int index){
+<span class="fc" id="L94">		return frames.get(index).getViewMap().get(cd);</span>
+	}
+
+	private boolean isOriginalOrShift(CameraDirection cd, CameraView cv){
+<span class="fc bfc" id="L98" title="All 4 branches covered.">		return cv.equals(originalViewMap.get(cd)) || possibleShiftsMap.get(cd).contains(cv);</span>
+	}
+
+	private List&lt;Frame&gt; getFrames(){
+<span class="fc" id="L102">        return frames;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
