@@ -153,4 +153,140 @@ public class CameraViewTest {
 		}
 	}
 
+	public static class CopyViewToLocationTest {
+		private int[][] source = { { 1, 1 }, { 1, 1 } };
+		private int[][] dest = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } };
+
+		// bad data, source is null
+		@Test(expected = NullPointerException.class)
+		public void badData1() {
+			CameraView.TESTHOOK.testCopyViewToLocation(null, dest, 1, 1);
+		}
+
+		// bad data, destination is null
+		@Test(expected = NullPointerException.class)
+		public void badData2() {
+			CameraView.TESTHOOK.testCopyViewToLocation(source, null, 1, 1);
+		}
+
+		// bad data, startI < 0
+		@Test(expected = AssertionError.class)
+		public void badData3() {
+			CameraView.TESTHOOK.testCopyViewToLocation(source, dest, -1, 1);
+		}
+
+		// bad data, startI + source.length > dest.length
+		@Test(expected = AssertionError.class)
+		public void badData4() {
+			CameraView.TESTHOOK.testCopyViewToLocation(source, dest, 2, 1);
+		}
+
+		// bad data, startJ < 0
+		@Test(expected = AssertionError.class)
+		public void badData5() {
+			CameraView.TESTHOOK.testCopyViewToLocation(source, dest, 1, -1);
+		}
+
+		// bad data, startJ + source[0].length > dest[0].length
+		@Test(expected = AssertionError.class)
+		public void badData6() {
+			CameraView.TESTHOOK.testCopyViewToLocation(source, dest, 1, 2);
+		}
+
+		// good data, code coverage
+		@Test
+		public void goodData() {
+			int[][] newDest = { { 1, 1, 0 }, { 1, 1, 0 }, { 0, 0, 0 } };
+			CameraView.TESTHOOK.testCopyViewToLocation(source, dest, 0, 0);
+			Assert.assertTrue(Arrays.deepEquals(newDest, dest));
+		}
+
+		// boundary test
+		@Test
+		public void boundaryTest() {
+			int[][] newDest = { { 0, 0, 0 }, { 0, 1, 1 }, { 0, 1, 1 } };
+			CameraView.TESTHOOK.testCopyViewToLocation(source, dest, 1, 1);
+			Assert.assertTrue(Arrays.deepEquals(newDest, dest));
+		}
+	}
+
+	public static class TrimmedViewTest {
+		private int[][] source = { { 1, 0, 0 }, { 0, 1, 0 }, { 0, 0, 1 } };
+
+		// bad data, source is null
+		@Test(expected = NullPointerException.class)
+		public void badData1() {
+			CameraView.TESTHOOK.testTrimmedView(null, 1, 1, 2, 2);
+		}
+
+		// bad data, startI < 0
+		@Test(expected = AssertionError.class)
+		public void badData2() {
+			CameraView.TESTHOOK.testTrimmedView(source, -1, 1, 2, 2);
+		}
+
+		// bad data, startI = endI
+		@Test(expected = AssertionError.class)
+		public void badData3() {
+			CameraView.TESTHOOK.testTrimmedView(source, 1, 1, 1, 2);
+		}
+
+		// bad data, startI > endI
+		@Test(expected = AssertionError.class)
+		public void badData4() {
+			CameraView.TESTHOOK.testTrimmedView(source, 2, 1, 1, 2);
+		}
+
+		// bad data, endI > source.length
+		@Test(expected = AssertionError.class)
+		public void badData5() {
+			CameraView.TESTHOOK.testTrimmedView(source, 1, 1, 4, 2);
+		}
+
+		// bad data, startJ < 0
+		@Test(expected = AssertionError.class)
+		public void badData6() {
+			CameraView.TESTHOOK.testTrimmedView(source, 1, -1, 2, 2);
+		}
+
+		// bad data, startJ = endJ
+		@Test(expected = AssertionError.class)
+		public void badData7() {
+			CameraView.TESTHOOK.testTrimmedView(source, 1, 1, 2, 1);
+		}
+
+		// bad data, startJ > endJ
+		@Test(expected = AssertionError.class)
+		public void badData8() {
+			CameraView.TESTHOOK.testTrimmedView(source, 1, 2, 1, 1);
+		}
+
+		// bad data, endJ > source[0].length
+		@Test(expected = AssertionError.class)
+		public void badData9() {
+			CameraView.TESTHOOK.testTrimmedView(source, 1, 1, 2, 4);
+		}
+
+		// good data, code coverage
+		@Test
+		public void goodData() {
+			int[][] subMatrix = { { 1 } };
+			Assert.assertTrue(Arrays.deepEquals(subMatrix, CameraView.TESTHOOK.testTrimmedView(source, 1, 1, 2, 2)));
+		}
+
+		// branch coverage, start from (0, 0)
+		@Test
+		public void boundaryTest1() {
+			int[][] subMatrix = { { 1, 0 }, { 0, 1 } };
+			Assert.assertTrue(Arrays.deepEquals(subMatrix, CameraView.TESTHOOK.testTrimmedView(source, 0, 0, 2, 2)));
+		}
+
+		// branch coverage, end at (2, 2)
+		@Test
+		public void boundaryTest2() {
+			int[][] subMatrix = { { 1, 0 }, { 0, 1 } };
+			Assert.assertTrue(Arrays.deepEquals(subMatrix, CameraView.TESTHOOK.testTrimmedView(source, 1, 1, 3, 3)));
+		}
+	}
+
 }

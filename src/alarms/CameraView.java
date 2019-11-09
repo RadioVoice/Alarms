@@ -83,8 +83,8 @@ public class CameraView {
 	// return a part of a 2d array
 	private static int[][] trimmedView(int[][] source, int startI, int startJ, int endI, int endJ) {
 		Objects.requireNonNull(source);
-		assert 0 <= startI && startI <= endI && endI <= source.length;
-		assert 0 <= startJ && startJ <= endJ && endJ <= source[0].length;
+		assert 0 <= startI && startI < endI && endI <= source.length;
+		assert 0 <= startJ && startJ < endJ && endJ <= source[0].length;
 		int[][] part = new int[endI - startI][endJ - startJ];
 		for (int i = startI; i < endI; i++) {
 			part[i - startI] = Arrays.copyOfRange(source[i], startJ, endJ);
