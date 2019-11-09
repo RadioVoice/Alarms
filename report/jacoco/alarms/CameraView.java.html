@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CameraView.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">alarms</a> &gt; <a href="index.source.html" class="el_package">alarms</a> &gt; <span class="el_source">CameraView.java</span></div><h1>CameraView.java</h1><pre class="source lang-java linenums">package alarms;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+
+public class CameraView {
+	private final int[][] data;
+	private final int xDim;
+	private final int yDim;
+	private CameraDirection cameraDirection;
+
+<span class="fc" id="L14">	private CameraView(CameraDirection direction, int[][] inputData) {</span>
+<span class="fc" id="L15">		data = inputData;</span>
+<span class="fc" id="L16">		xDim = data.length;</span>
+<span class="fc" id="L17">		yDim = data[0].length;</span>
+<span class="fc" id="L18">		cameraDirection = direction;</span>
+<span class="fc" id="L19">	}</span>
+
+	public static CameraView of(CameraDirection direction, int[][] inputData){
+<span class="fc" id="L22">		Objects.requireNonNull(inputData);</span>
+<span class="fc" id="L23">		Objects.requireNonNull(direction);</span>
+<span class="fc" id="L24">		return new CameraView(direction, inputData);</span>
+	}
+
+	public CameraDirection getCameraDirection() {
+<span class="fc" id="L28">		return cameraDirection;</span>
+	}
+
+	public int[][] getData() {
+<span class="nc" id="L32">		return data;</span>
+	}
+
+	public int getxDim() {
+<span class="fc" id="L36">		return xDim;</span>
+	}
+
+	public int getyDim() {
+<span class="fc" id="L40">		return yDim;</span>
+	}
+
+	// get all possible shifted views
+	public static List&lt;CameraView&gt; possibleShiftedViews(CameraView view) {
+<span class="fc" id="L45">		Objects.requireNonNull(view);</span>
+<span class="fc" id="L46">		List&lt;CameraView&gt; possibleShifts = new ArrayList&lt;&gt;();</span>
+		int[][] container;
+<span class="fc bfc" id="L48" title="All 2 branches covered.">		for (int i = 0; i &lt;= view.xDim * 2 - 2; i++) {</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">			for (int j = 0; j &lt;= view.yDim * 2 - 2; j++) {</span>
+<span class="fc" id="L50">				container = emptyContainer(view.xDim * 3 - 2, view.yDim * 3 - 2);</span>
+<span class="fc" id="L51">				copyViewToLocation(view.data, container, i, j);</span>
+<span class="fc" id="L52">				possibleShifts.add(CameraView.of(view.cameraDirection,</span>
+<span class="fc" id="L53">						trimmedView(container, view.xDim - 1, view.yDim - 1, view.xDim * 2 - 1, view.yDim * 2 - 1)));</span>
+			}
+		}
+<span class="fc" id="L56">		return possibleShifts;</span>
+	}
+
+	// return emptyContainer
+	private static int[][] emptyContainer(int rowNum, int colNum) {
+<span class="fc" id="L61">		int[][] container = new int[rowNum][colNum];</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">		for (int i = 0; i &lt; container.length; i++) {</span>
+<span class="fc" id="L63">			Arrays.fill(container[i], 0);</span>
+		}
+<span class="fc" id="L65">		return container;</span>
+	}
+
+	// copy 2d array
+	private static void copyViewToLocation(int[][] source, int[][] dest, int startI, int startJ) {
+<span class="fc bfc" id="L70" title="All 2 branches covered.">		for (int i = 0; i &lt; source.length; i++) {</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">			for (int j = 0; j &lt; source[0].length; j++) {</span>
+<span class="fc" id="L72">				dest[startI + i][startJ + j] = source[i][j];</span>
+			}
+		}
+<span class="fc" id="L75">	}</span>
+
+	// return a part of a 2d array
+	private static int[][] trimmedView(int[][] source, int startI, int startJ, int endI, int endJ) {
+<span class="fc" id="L79">		Objects.requireNonNull(source);</span>
+<span class="fc" id="L80">		int[][] part = new int[endI - startI][endJ - startJ];</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">		for (int i = startI; i &lt; endI; i++) {</span>
+<span class="fc" id="L82">			part[i - startI] = Arrays.copyOfRange(source[i], startJ, endJ);</span>
+		}
+<span class="fc" id="L84">		return part;</span>
+	}
+
+	@Override
+	public boolean equals(Object other) {
+<span class="pc bpc" id="L89" title="2 of 4 branches missed.">		return other instanceof CameraView &amp;&amp; ((CameraView) other).cameraDirection.equals(cameraDirection)</span>
+<span class="fc bfc" id="L90" title="All 2 branches covered.">				&amp;&amp; (Arrays.deepEquals(((CameraView) other).data, data));</span>
+	}
+
+	// test private methods
+<span class="nc" id="L94">	public static class TESTHOOK {</span>
+		public static int[][] testEmptyContainer(int rowNum, int colNum) {
+<span class="nc" id="L96">			return emptyContainer(rowNum, colNum);</span>
+		}
+		public static void testCopyViewToLocation(int[][] source, int[][] dest, int startI, int startJ) {
+<span class="nc" id="L99">			copyViewToLocation(source, dest, startI, startJ);</span>
+<span class="nc" id="L100">		}</span>
+		public static int[][] testTrimmedView(int[][] source, int startI, int startJ, int endI, int endJ){
+<span class="nc" id="L102">			return trimmedView(source, startI, startJ, endI, endJ);</span>
+		}
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>InputHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">alarms</a> &gt; <a href="index.source.html" class="el_package">alarms</a> &gt; <span class="el_source">InputHandler.java</span></div><h1>InputHandler.java</h1><pre class="source lang-java linenums">package alarms;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+<span class="pc bpc" id="L11" title="1 of 2 branches missed.">public class InputHandler {</span>
+    private final int x, y, z;
+    private ArrayList&lt;Frame&gt; frames;
+
+<span class="fc" id="L15">    private InputHandler(ArrayList&lt;Frame&gt; frameList, int xDim, int yDim, int zDim) {</span>
+<span class="fc" id="L16">        x = xDim;</span>
+<span class="fc" id="L17">        y = yDim;</span>
+<span class="fc" id="L18">        z = zDim;</span>
+<span class="fc" id="L19">        frames = frameList;</span>
+<span class="fc" id="L20">    }</span>
+
+    public static InputHandler of(File file) throws IOException {
+        int xDim, yDim, zDim;
+<span class="fc" id="L24">        ArrayList&lt;Frame&gt; frameList = new ArrayList&lt;Frame&gt;();</span>
+
+<span class="fc" id="L26">        Scanner validScan = new Scanner(file);</span>
+<span class="fc" id="L27">        requireValidInput(validScan);</span>
+
+<span class="fc" id="L29">        Scanner scan = new Scanner(file);</span>
+<span class="fc" id="L30">        String dimensionLine = scan.nextLine();</span>
+<span class="fc" id="L31">        String[] dimensions = dimensionLine.split(&quot; &quot;);</span>
+
+<span class="fc" id="L33">        xDim = Integer.parseInt(dimensions[0]);</span>
+<span class="fc" id="L34">        yDim = Integer.parseInt(dimensions[1]);</span>
+<span class="fc" id="L35">        zDim = Integer.parseInt(dimensions[2]);</span>
+
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        while(scan.hasNextLine()) {</span>
+<span class="fc" id="L38">            String[] frameSet = scan.nextLine().split(&quot; &quot;);</span>
+<span class="fc" id="L39">            CameraView front = CameraView.of(CameraDirection.FRONT, matrixFromString(xDim, zDim, frameSet[0]));</span>
+<span class="fc" id="L40">            CameraView side = CameraView.of(CameraDirection.SIDE, matrixFromString(yDim, zDim, frameSet[1]));</span>
+<span class="fc" id="L41">            CameraView top = CameraView.of(CameraDirection.TOP, matrixFromString(xDim, yDim, frameSet[2]));</span>
+<span class="fc" id="L42">            frameList.add(Frame.of(front, side, top));</span>
+<span class="fc" id="L43">        }</span>
+<span class="fc" id="L44">        return new InputHandler(frameList, xDim, yDim, zDim);</span>
+    }
+
+    static void requireValidInput(Scanner scan) throws IOException {
+<span class="fc" id="L48">        String dimensionLine = scan.nextLine();</span>
+        try{
+<span class="fc" id="L50">            checkDimensionLine(dimensionLine);</span>
+<span class="fc" id="L51">            String[] dimensions = dimensionLine.split(&quot; &quot;);</span>
+<span class="fc" id="L52">            int x = Integer.parseInt(dimensions[0]);</span>
+<span class="fc" id="L53">            int y = Integer.parseInt(dimensions[1]);</span>
+<span class="fc" id="L54">            int z = Integer.parseInt(dimensions[2]);</span>
+
+<span class="fc bfc" id="L56" title="All 2 branches covered.">            while (scan.hasNextLine()){</span>
+<span class="fc" id="L57">                checkFrameLine(scan.nextLine(), x, y, z);</span>
+            }
+<span class="fc" id="L59">        } catch (IllegalArgumentException e){</span>
+<span class="fc" id="L60">            throw new IOException(e.getMessage());</span>
+<span class="fc" id="L61">        }</span>
+<span class="fc" id="L62">    }</span>
+
+    static void checkDimensionLine(String s) throws IllegalArgumentException{
+<span class="fc" id="L65">        Pattern dimLineP = Pattern.compile(&quot;\\d+ \\d+ \\d+&quot;);</span>
+<span class="fc" id="L66">        Pattern posDigits = Pattern.compile(&quot;[1-9]+&quot;);</span>
+<span class="fc" id="L67">        Matcher m = dimLineP.matcher(s);</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">        if (!m.matches()){</span>
+<span class="fc" id="L69">            throw new IllegalArgumentException(&quot;Dimension Line not correct&quot;);</span>
+        }
+<span class="fc" id="L71">        String[] dimensions = s.split(&quot; &quot;);</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">        for (String digit: dimensions){</span>
+<span class="fc" id="L73">            Matcher m2 = posDigits.matcher(digit);</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">            if (!m2.matches()){</span>
+<span class="fc" id="L75">                throw new IllegalArgumentException(&quot;Dimensions are not valid&quot;);</span>
+            }
+        }
+<span class="fc" id="L78">    }</span>
+
+    static void checkFrameLine(String s, int xDim, int yDim, int zDim) throws IllegalArgumentException{
+<span class="fc" id="L81">        Pattern frameLineP = Pattern.compile(&quot;[01]+ [01]+ [01]+&quot;);</span>
+<span class="fc" id="L82">        Matcher m = frameLineP.matcher(s);</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">        if (!m.matches()){</span>
+<span class="fc" id="L84">            throw new IllegalArgumentException(&quot;Frame Line not formatted correctly&quot;);</span>
+        }
+<span class="fc" id="L86">        String[] views = s.split(&quot; &quot;);</span>
+<span class="fc" id="L87">        int[] validSizes = {xDim*zDim, yDim*zDim, xDim*yDim};</span>
+
+<span class="fc bfc" id="L89" title="All 2 branches covered.">        for (int i = 0; i &lt; 3; i++){</span>
+<span class="fc bfc" id="L90" title="All 2 branches covered.">            if (views[i].length() != validSizes[i])</span>
+<span class="fc" id="L91">                throw new IllegalArgumentException(&quot;Single view (&quot; + i + &quot;) does not match expected size&quot;);</span>
+        }
+<span class="fc" id="L93">    }</span>
+    
+    // convert a string to a 2D array with given row and column numbers
+    private static int[][] matrixFromString(int x, int y, String inputData) {
+<span class="fc" id="L97">		Objects.requireNonNull(inputData);</span>
+<span class="pc bpc" id="L98" title="3 of 6 branches missed.">		assert (x &gt; 0 &amp;&amp; y &gt; 0);</span>
+<span class="pc bpc" id="L99" title="2 of 4 branches missed.">		assert (inputData.length() == x * y);</span>
+
+<span class="fc" id="L101">		char[] digits = inputData.toCharArray();</span>
+<span class="fc" id="L102">		int index = 0;</span>
+<span class="fc" id="L103">		int[][] returnData = new int[x][y];</span>
+
+<span class="fc bfc" id="L105" title="All 2 branches covered.">		for (int j= 0; j &lt; x; j++) {</span>
+<span class="fc bfc" id="L106" title="All 2 branches covered.">			for (int i = 0; i &lt; x; i++) {</span>
+<span class="fc" id="L107">				returnData[i][j] = Character.getNumericValue(digits[index]);</span>
+<span class="fc" id="L108">				index++;</span>
+			}
+		}
+
+<span class="fc" id="L112">		return returnData;</span>
+    }
+
+    ArrayList&lt;Frame&gt; getFrames(){
+<span class="fc" id="L116">        return frames;</span>
+    }
+
+    public class TestHook{
+        int[][] testMatrixFromString(int x, int y, String s){
+            return matrixFromString(x, y, s);
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -32,25 +32,30 @@ public class AlarmSystem {
 
 	public static void main(String[] args){
 	    if (args.length != 1){
-	        System.out.println("invalid commandline argument");
-            System.exit(-1);
-        }
-	    String filePath = args[0];
-	    try{
-            InputHandler handler = InputHandler.of(new File(filePath));
-            AlarmSystem as = AlarmSystem.of(handler.getFrames());
+            System.out.println("invalid");
+        } else{
+            String filePath = args[0];
+            boolean finished = false;
+            try{
+                InputHandler handler = InputHandler.of(new File(filePath));
+                AlarmSystem as = AlarmSystem.of(handler.getFrames());
 
-            for (int i = 0; i < as.getFrames().size(); i++){
-                if (as.shouldAlarmSound(i)){
-                    System.out.println("true");
-                    System.exit(0);
+                for (int i = 0; i < as.getFrames().size(); i++){
+                    if (as.shouldAlarmSound(i)){
+                        System.out.println("true");
+                        finished=true;
+                        break;
+                    }
                 }
+            } catch (IOException e){
+                System.out.println("invalid");
+                finished=true;
             }
-        } catch (IOException e){
-	        System.out.println("invalid");
-	        System.exit(-1);
+            if(!finished){
+                System.out.println("false");
+            }
         }
-	    System.out.println("false");
+
     }
 
 	// check front, side, top view separately for each frame.
