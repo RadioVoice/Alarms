@@ -1,8 +1,5 @@
 package alarms;
 
-import static org.junit.Assert.*;
-
-import java.util.Iterator;
 import java.util.List;
 
 import org.junit.Assert;
@@ -71,14 +68,47 @@ public class CameraViewTest {
 		}
 	}
 
-	@Test
-	public void testPossibleShiftedViews() {
-		fail("Not yet implemented");
-	}
+	public static class EqualsObjectTest {
+		private CameraDirection direction1 = CameraDirection.FRONT;
+		private CameraDirection direction2 = CameraDirection.SIDE;
+		private int[][] inputData1 = { { 1, 1 }, { 1, 1 } };
+		private int[][] inputData2 = { { 1, 1 }, { 1, 1 } };
+		private int[][] inputData3 = { { 1 }, { 1 } };
+		private CameraView view1 = CameraView.of(direction1, inputData1);
+		private CameraView view2;
 
-	@Test
-	public void testEqualsObject() {
-		fail("Not yet implemented");
+		// bad data, input is null
+		@Test
+		public void badData1() {
+			Assert.assertFalse(view1.equals(null));
+		}
+
+		// bad data, input is not a CameraView object
+		@Test
+		public void badData2() {
+			Assert.assertFalse(view1.equals(1));
+		}
+
+		// good data, code coverage
+		@Test
+		public void goodData() {
+			view2 = CameraView.of(direction1, inputData2);
+			Assert.assertTrue(view1.equals(view2));
+		}
+
+		// branch coverage
+		@Test
+		public void branchCoverage1() {
+			view2 = CameraView.of(direction2, inputData2);
+			Assert.assertFalse(view1.equals(view2));
+		}
+		
+		// branch coverage
+		@Test
+		public void branchCoverage2() {
+			view2 = CameraView.of(direction1, inputData3);
+			Assert.assertFalse(view1.equals(view2));
+		}
 	}
 
 }
