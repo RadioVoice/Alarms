@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="DESKTOP-4K1HDNA" name="alarms.CameraViewTest$PossibleShiftedViewsTest" skipped="0" tests="3" time="0.147" timestamp="2019-11-09T19:40:45">
+<testsuite errors="0" failures="0" hostname="DESKTOP-4K1HDNA" name="alarms.CameraViewTest$PossibleShiftedViewsTest" skipped="0" tests="3" time="0.282" timestamp="2019-11-09T19:48:20">
   <properties>
     <property name="sun.desktop" value="windows" />
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
@@ -20,14 +20,14 @@
     <property name="sun.java.launcher" value="SUN_STANDARD" />
     <property name="user.country" value="US" />
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-12.0.2\bin" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner alarms.CameraViewTest$PossibleShiftedViewsTest skipNonTests=false filtertrace=false haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.OutErrSummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Owner\Desktop\Alarms\report\junit\TEST-alarms.CameraViewTest$PossibleShiftedViewsTest.xml crashfile=C:\Users\Owner\Desktop\Alarms\junitvmwatcher4032282676380859250.properties propsfile=C:\Users\Owner\Desktop\Alarms\junit5583724477773326130.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner alarms.CameraViewTest$PossibleShiftedViewsTest skipNonTests=false filtertrace=false haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.OutErrSummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Owner\Desktop\Alarms\report\junit\TEST-alarms.CameraViewTest$PossibleShiftedViewsTest.xml crashfile=C:\Users\Owner\Desktop\Alarms\junitvmwatcher11767873826267523435.properties propsfile=C:\Users\Owner\Desktop\Alarms\junit11026211310579992501.properties" />
     <property name="jdk.debug" value="release" />
     <property name="sun.cpu.endian" value="little" />
     <property name="user.home" value="C:\Users\Owner" />
     <property name="user.language" value="en" />
     <property name="sun.stderr.encoding" value="cp437" />
     <property name="java.specification.vendor" value="Oracle Corporation" />
-    <property name="_jacoco.agentFile" value="C:\Users\Owner\AppData\Local\Temp\jacocoagent8539836124716261259.jar" />
+    <property name="_jacoco.agentFile" value="C:\Users\Owner\AppData\Local\Temp\jacocoagent16124092795180527152.jar" />
     <property name="java.version.date" value="2019-07-16" />
     <property name="java.home" value="C:\Program Files\Java\jdk-12.0.2" />
     <property name="basedir" value="C:\Users\Owner\Desktop\Alarms" />
@@ -77,7 +77,7 @@
     <property name="src.dir" value="src" />
   </properties>
   <testcase classname="alarms.CameraViewTest$PossibleShiftedViewsTest" name="badData" time="0.0" />
-  <testcase classname="alarms.CameraViewTest$PossibleShiftedViewsTest" name="boundaryTest" time="0.0" />
+  <testcase classname="alarms.CameraViewTest$PossibleShiftedViewsTest" name="boundaryTest" time="0.002" />
   <testcase classname="alarms.CameraViewTest$PossibleShiftedViewsTest" name="goodData" time="0.0" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

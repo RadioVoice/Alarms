@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="DESKTOP-4K1HDNA" name="alarms.AlarmSystemTest" skipped="0" tests="12" time="0.313" timestamp="2019-11-09T19:40:43">
+<testsuite errors="0" failures="0" hostname="DESKTOP-4K1HDNA" name="alarms.AlarmSystemTest" skipped="0" tests="12" time="0.452" timestamp="2019-11-09T19:48:13">
   <properties>
     <property name="sun.desktop" value="windows" />
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
@@ -20,14 +20,14 @@
     <property name="sun.java.launcher" value="SUN_STANDARD" />
     <property name="user.country" value="US" />
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-12.0.2\bin" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner alarms.AlarmSystemTest skipNonTests=false filtertrace=false haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.OutErrSummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Owner\Desktop\Alarms\report\junit\TEST-alarms.AlarmSystemTest.xml crashfile=C:\Users\Owner\Desktop\Alarms\junitvmwatcher7757489363905294376.properties propsfile=C:\Users\Owner\Desktop\Alarms\junit7047188949617316736.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner alarms.AlarmSystemTest skipNonTests=false filtertrace=false haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.OutErrSummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Owner\Desktop\Alarms\report\junit\TEST-alarms.AlarmSystemTest.xml crashfile=C:\Users\Owner\Desktop\Alarms\junitvmwatcher16817084747468892046.properties propsfile=C:\Users\Owner\Desktop\Alarms\junit2499422162566154160.properties" />
     <property name="jdk.debug" value="release" />
     <property name="sun.cpu.endian" value="little" />
     <property name="user.home" value="C:\Users\Owner" />
     <property name="user.language" value="en" />
     <property name="sun.stderr.encoding" value="cp437" />
     <property name="java.specification.vendor" value="Oracle Corporation" />
-    <property name="_jacoco.agentFile" value="C:\Users\Owner\AppData\Local\Temp\jacocoagent8539836124716261259.jar" />
+    <property name="_jacoco.agentFile" value="C:\Users\Owner\AppData\Local\Temp\jacocoagent16124092795180527152.jar" />
     <property name="java.version.date" value="2019-07-16" />
     <property name="java.home" value="C:\Program Files\Java\jdk-12.0.2" />
     <property name="basedir" value="C:\Users\Owner\Desktop\Alarms" />
@@ -76,17 +76,17 @@
     <property name="java.class.version" value="56.0" />
     <property name="src.dir" value="src" />
   </properties>
-  <testcase classname="alarms.AlarmSystemTest" name="multipleFallTest" time="0.03" />
-  <testcase classname="alarms.AlarmSystemTest" name="topShiftTest" time="0.01" />
+  <testcase classname="alarms.AlarmSystemTest" name="multipleFallTest" time="0.042" />
+  <testcase classname="alarms.AlarmSystemTest" name="topShiftTest" time="0.019" />
   <testcase classname="alarms.AlarmSystemTest" name="invalidMatrixSizeTest" time="0.01" />
-  <testcase classname="alarms.AlarmSystemTest" name="normalTest" time="0.01" />
-  <testcase classname="alarms.AlarmSystemTest" name="fallingTest" time="0.008" />
-  <testcase classname="alarms.AlarmSystemTest" name="nonSquareTest" time="0.0" />
+  <testcase classname="alarms.AlarmSystemTest" name="normalTest" time="0.008" />
+  <testcase classname="alarms.AlarmSystemTest" name="fallingTest" time="0.002" />
+  <testcase classname="alarms.AlarmSystemTest" name="nonSquareTest" time="0.008" />
   <testcase classname="alarms.AlarmSystemTest" name="invalidNegativeDimensionTest" time="0.0" />
-  <testcase classname="alarms.AlarmSystemTest" name="airplaneNextToBoxTest" time="0.002" />
+  <testcase classname="alarms.AlarmSystemTest" name="airplaneNextToBoxTest" time="0.012" />
   <testcase classname="alarms.AlarmSystemTest" name="invalidMissingDimensionsTest" time="0.0" />
   <testcase classname="alarms.AlarmSystemTest" name="airplaneTest" time="0.002" />
-  <testcase classname="alarms.AlarmSystemTest" name="invalidArgumentTest" time="0.002" />
+  <testcase classname="alarms.AlarmSystemTest" name="invalidArgumentTest" time="0.0" />
   <testcase classname="alarms.AlarmSystemTest" name="invalidMatricesTest" time="0.0" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

@@ -59,7 +59,7 @@ public class AlarmSystem {
     }
 
 	// check front, side, top view separately for each frame.
-	boolean shouldAlarmSound(int index) {
+	private boolean shouldAlarmSound(int index) {
 		for (CameraDirection direction : CameraDirection.values()) { 
 			if (isAlarmInDirection(direction, index)) {
 				return true;

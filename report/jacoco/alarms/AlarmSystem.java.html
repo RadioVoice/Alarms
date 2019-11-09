@@ -32,74 +32,75 @@ public class AlarmSystem {
 
 	public static void main(String[] args){
 <span class="pc bpc" id="L34" title="1 of 2 branches missed.">	    if (args.length != 1){</span>
-<span class="nc" id="L35">	        System.out.println(&quot;invalid&quot;);</span>
-<span class="nc" id="L36">            System.exit(-1);</span>
-        }
-<span class="fc" id="L38">	    String filePath = args[0];</span>
-<span class="fc" id="L39">	    boolean finished = false;</span>
-	    try{
-<span class="fc" id="L41">            InputHandler handler = InputHandler.of(new File(filePath));</span>
-<span class="fc" id="L42">            AlarmSystem as = AlarmSystem.of(handler.getFrames());</span>
+<span class="nc" id="L35">            System.out.println(&quot;invalid&quot;);</span>
+        } else{
+<span class="fc" id="L37">            String filePath = args[0];</span>
+<span class="fc" id="L38">            boolean finished = false;</span>
+            try{
+<span class="fc" id="L40">                InputHandler handler = InputHandler.of(new File(filePath));</span>
+<span class="fc" id="L41">                AlarmSystem as = AlarmSystem.of(handler.getFrames());</span>
 
-<span class="fc bfc" id="L44" title="All 2 branches covered.">            for (int i = 0; i &lt; as.getFrames().size(); i++){</span>
-<span class="fc bfc" id="L45" title="All 2 branches covered.">                if (as.shouldAlarmSound(i)){</span>
-<span class="fc" id="L46">                    System.out.println(&quot;true&quot;);</span>
-<span class="fc" id="L47">                    finished=true;</span>
-<span class="fc" id="L48">                    break;</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">                for (int i = 0; i &lt; as.getFrames().size(); i++){</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">                    if (as.shouldAlarmSound(i)){</span>
+<span class="fc" id="L45">                        System.out.println(&quot;true&quot;);</span>
+<span class="fc" id="L46">                        finished=true;</span>
+<span class="fc" id="L47">                        break;</span>
+                    }
                 }
+<span class="fc" id="L50">            } catch (IOException e){</span>
+<span class="fc" id="L51">                System.out.println(&quot;invalid&quot;);</span>
+<span class="fc" id="L52">                finished=true;</span>
+<span class="fc" id="L53">            }</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">            if(!finished){</span>
+<span class="fc" id="L55">                System.out.println(&quot;false&quot;);</span>
             }
-<span class="fc" id="L51">        } catch (IOException e){</span>
-<span class="fc" id="L52">	        System.out.println(&quot;invalid&quot;);</span>
-<span class="fc" id="L53">	        finished=true;</span>
-<span class="fc" id="L54">        }</span>
-<span class="fc bfc" id="L55" title="All 2 branches covered.">	    if(!finished){</span>
-<span class="fc" id="L56">			System.out.println(&quot;false&quot;);</span>
-		}
-<span class="fc" id="L58">    }</span>
+        }
+
+<span class="fc" id="L59">    }</span>
 
 	// check front, side, top view separately for each frame.
 	boolean shouldAlarmSound(int index) {
-<span class="fc bfc" id="L62" title="All 2 branches covered.">		for (CameraDirection direction : CameraDirection.values()) { </span>
-<span class="fc bfc" id="L63" title="All 2 branches covered.">			if (isAlarmInDirection(direction, index)) {</span>
-<span class="fc" id="L64">				return true;</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">		for (CameraDirection direction : CameraDirection.values()) { </span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">			if (isAlarmInDirection(direction, index)) {</span>
+<span class="fc" id="L65">				return true;</span>
 			}
         }
-<span class="fc" id="L67">		return false;</span>
+<span class="fc" id="L68">		return false;</span>
 	}
 
 	// check if the view equals to or is a shift from the original one
 	private boolean isAlarmInDirection(CameraDirection direction, int index) {
-<span class="fc" id="L72">		CameraView view = viewFromFrames(direction, index);</span>
-<span class="fc bfc" id="L73" title="All 2 branches covered.">		if (!isOriginalOrShift(direction, view)) {</span>
-<span class="fc" id="L74">			return isViewChangePermanent(direction, index);</span>
+<span class="fc" id="L73">		CameraView view = viewFromFrames(direction, index);</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">		if (!isOriginalOrShift(direction, view)) {</span>
+<span class="fc" id="L75">			return isViewChangePermanent(direction, index);</span>
 		}
-<span class="fc" id="L76">		return false;</span>
+<span class="fc" id="L77">		return false;</span>
 	}
 
 	// check if the view change permanently
 	private boolean isViewChangePermanent(CameraDirection direction, int index) {
 		CameraView view;
-<span class="fc" id="L82">		int i = index + 1;</span>
-<span class="pc bpc" id="L83" title="1 of 4 branches missed.">		while (i &lt; frames.size() &amp;&amp; i &lt;= index + 5) {</span>
-<span class="fc" id="L84">			view = viewFromFrames(direction, i);</span>
-<span class="fc bfc" id="L85" title="All 2 branches covered.">			if (isOriginalOrShift(direction, view)) {</span>
-<span class="fc" id="L86">				return false;</span>
+<span class="fc" id="L83">		int i = index + 1;</span>
+<span class="pc bpc" id="L84" title="1 of 4 branches missed.">		while (i &lt; frames.size() &amp;&amp; i &lt;= index + 5) {</span>
+<span class="fc" id="L85">			view = viewFromFrames(direction, i);</span>
+<span class="fc bfc" id="L86" title="All 2 branches covered.">			if (isOriginalOrShift(direction, view)) {</span>
+<span class="fc" id="L87">				return false;</span>
 			}
-<span class="fc" id="L88">			i++;</span>
+<span class="fc" id="L89">			i++;</span>
 		}
-<span class="fc" id="L90">		return true;</span>
+<span class="fc" id="L91">		return true;</span>
 	}
 
 	private CameraView viewFromFrames(CameraDirection cd, int index){
-<span class="fc" id="L94">		return frames.get(index).getViewMap().get(cd);</span>
+<span class="fc" id="L95">		return frames.get(index).getViewMap().get(cd);</span>
 	}
 
 	private boolean isOriginalOrShift(CameraDirection cd, CameraView cv){
-<span class="fc bfc" id="L98" title="All 4 branches covered.">		return cv.equals(originalViewMap.get(cd)) || possibleShiftsMap.get(cd).contains(cv);</span>
+<span class="fc bfc" id="L99" title="All 4 branches covered.">		return cv.equals(originalViewMap.get(cd)) || possibleShiftsMap.get(cd).contains(cv);</span>
 	}
 
 	private List&lt;Frame&gt; getFrames(){
-<span class="fc" id="L102">        return frames;</span>
+<span class="fc" id="L103">        return frames;</span>
     }
 
 }

@@ -7,7 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import org.junit.experimental.runners.Enclosed;;
+import org.junit.experimental.runners.Enclosed;
 
 @RunWith(Enclosed.class)
 public class CameraViewTest {
@@ -56,7 +56,7 @@ public class CameraViewTest {
 			view = CameraView.of(direction, inputData1);
 			List<CameraView> possibleViews = CameraView.possibleShiftedViews(view);
 			Assert.assertEquals(9, possibleViews.size());
-			Assert.assertTrue(view.equals(possibleViews.get(4)));
+            Assert.assertEquals(view, possibleViews.get(4));
 		}
 
 		// boundary test, when dimension = 1
@@ -65,7 +65,7 @@ public class CameraViewTest {
 			view = CameraView.of(direction, inputData2);
 			List<CameraView> possibleViews = CameraView.possibleShiftedViews(view);
 			Assert.assertEquals(1, possibleViews.size());
-			Assert.assertTrue(view.equals(possibleViews.get(0)));
+            Assert.assertEquals(view, possibleViews.get(0));
 		}
 	}
 
@@ -81,34 +81,34 @@ public class CameraViewTest {
 		// bad data, input is null
 		@Test
 		public void badData1() {
-			Assert.assertFalse(view1.equals(null));
+            Assert.assertNotEquals(null, view1);
 		}
 
 		// bad data, input is not a CameraView object
 		@Test
 		public void badData2() {
-			Assert.assertFalse(view1.equals(1));
+            Assert.assertNotEquals(1, view1);
 		}
 
 		// good data, code coverage
 		@Test
 		public void goodData() {
 			view2 = CameraView.of(direction1, inputData2);
-			Assert.assertTrue(view1.equals(view2));
+            Assert.assertEquals(view1, view2);
 		}
 
 		// branch coverage
 		@Test
 		public void branchCoverage1() {
 			view2 = CameraView.of(direction2, inputData2);
-			Assert.assertFalse(view1.equals(view2));
+            Assert.assertNotEquals(view1, view2);
 		}
 
 		// branch coverage
 		@Test
 		public void branchCoverage2() {
 			view2 = CameraView.of(direction1, inputData3);
-			Assert.assertFalse(view1.equals(view2));
+            Assert.assertNotEquals(view1, view2);
 		}
 	}
 
