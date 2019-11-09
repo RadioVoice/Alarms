@@ -1,10 +1,12 @@
 package alarms;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class InputHandler {
     private final int x, y, z;
@@ -17,7 +19,7 @@ public class InputHandler {
         frames = frameList;
     }
 
-    public static InputHandler of(File file) throws FileNotFoundException{
+    public static InputHandler of(File file) throws IOException {
         int xDim, yDim, zDim;
         ArrayList<Frame> frameList = new ArrayList<Frame>();
 
@@ -30,21 +32,64 @@ public class InputHandler {
 
         while(scan.hasNextLine()) {
             String[] frameSet = scan.nextLine().split(" ");
-            int[][] frontData = dataFromInput(xDim, zDim, frameSet[0]);
-            int[][] sideData = dataFromInput(yDim, zDim, frameSet[1]);
-            int[][] topData = dataFromInput(xDim, yDim, frameSet[2]);
-            CameraView front = CameraView.of(CameraDirection.FRONT, frontData);
-            CameraView side = CameraView.of(CameraDirection.SIDE, sideData);
-            CameraView top = CameraView.of(CameraDirection.TOP, topData);
+            CameraView front = CameraView.of(CameraDirection.FRONT, matrixFromString(xDim, zDim, frameSet[0]));
+            CameraView side = CameraView.of(CameraDirection.SIDE, matrixFromString(yDim, zDim, frameSet[1]));
+            CameraView top = CameraView.of(CameraDirection.TOP, matrixFromString(xDim, yDim, frameSet[2]));
             frameList.add(Frame.of(front, side, top));
         }
         return new InputHandler(frameList, xDim, yDim, zDim);
     }
+
+    static void requireValidInput(Scanner scan) throws IOException {
+        String dimensionLine = scan.nextLine();
+        try{
+            checkDimensionLine(dimensionLine);
+            String[] dimensions = dimensionLine.split(" ");
+            int x = Integer.parseInt(dimensions[0]);
+            int y = Integer.parseInt(dimensions[1]);
+            int z = Integer.parseInt(dimensions[2]);
+
+            while (scan.hasNextLine()){
+                checkFrameLine(scan.nextLine(), x, y, z);
+            }
+        } catch (IllegalArgumentException e){
+            throw new IOException();
+        }
+    }
+
+    static void checkDimensionLine(String s) throws IllegalArgumentException{
+        Pattern dimLineP = Pattern.compile("\\d+ \\d+ \\d+");
+        Pattern zeroOrOne = Pattern.compile("[01]");
+        Matcher m = dimLineP.matcher(s);
+        if (!m.matches()){
+            throw new IllegalArgumentException();
+        }
+        String[] dimensions = s.split(" ");
+        for (String digit: dimensions){
+            Matcher m2 = zeroOrOne.matcher(digit);
+            if (!m2.matches()){
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
+    static void checkFrameLine(String s, int xDim, int yDim, int zDim) throws IllegalArgumentException{
+        Pattern frameLineP = Pattern.compile("[01]+ [01]+ [01]+");
+        Matcher m = frameLineP.matcher(s);
+        if (!m.matches()){
+            throw new IllegalArgumentException();
+        }
+        String[] views = s.split(" ");
+        int[] validSizes = {xDim*zDim, yDim*zDim, xDim*yDim};
+
+        for (int i = 0; i < 3; i++){
+            if (views[i].length() != validSizes[i])
+                throw new IllegalArgumentException();
+        }
+    }
     
     // convert a string to a 2D array with given row and column numbers
-    private static int[][] dataFromInput(int x, int y, String inputData) throws NullPointerException, AssertionError, IllegalArgumentException {
-		Objects.requireNonNull(x);
-		Objects.requireNonNull(y);
+    private static int[][] matrixFromString(int x, int y, String inputData) {
 		Objects.requireNonNull(inputData);
 		assert (x > 0 && y > 0);
 		assert (inputData.length() == x * y);
@@ -55,40 +100,12 @@ public class InputHandler {
 
 		for (int i = 0; i < x; i++) {
 			for (int j = 0; j < y; j++) {
-				checkBytesValidity(inputBytes[byteIndex]);
 				returnData[i][j] = inputBytes[byteIndex] - '0';
 				byteIndex++;
 			}
 		}
 		
 		return returnData;
-    }
-    
-    // check whether inputByte only is f0 or 1
-    private static void checkBytesValidity(byte inputByte) {
-		if (inputByte != '0' || inputByte != '1') {
-			throw new IllegalArgumentException("input must be 0 or 1");
-		}
-	}
-
-    //boolean checkValidInput()
-    //In any of these cases, throw invalid input exception
-    //  is there 3 dimensions on the first line and nothing else
-    //  are there any negative numbers
-    //  does each line after contain 3 "words" separated by spaces?
-    //  Does each line only contain 0 and 1?
-    //  check size of each view and make sure it matches what it should be (in sets of 3)
-
-    static void requireValidInput(Scanner scan){
-        String[] dimensions = scan.nextLine().split(" ");
-        //check size of set
-        //check for all positive numbers
-        while (scan.hasNextLine()){
-            String[] views = scan.nextLine().split(" ");
-            //check size of set
-            //check only 0 or 1 in each string
-            //check string [0] is x*z, string[1] is y*z, string [2] is x*y
-        }
     }
 
     ArrayList<Frame> getFrames(){

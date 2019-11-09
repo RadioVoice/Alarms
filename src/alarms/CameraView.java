@@ -48,17 +48,17 @@ public class CameraView {
 		int[][] container;
 		for (int i = 0; i <= view.xDim * 2 - 2; i++) {
 			for (int j = 0; j <= view.yDim * 2 - 2; j++) {
-				container = emptyContainer(view.xDim * 3 - 2, view.yDim * 3 - 2);
-				copyViewToLocation(view.data, container, i, j);
+				container = emptyArray(view.xDim * 3 - 2, view.yDim * 3 - 2);
+				copyArrayToLocation(view.data, container, i, j);
 				possibleShifts.add(CameraView.of(view.cameraDirection,
-						trimmedView(container, view.xDim - 1, view.yDim - 1, view.xDim * 2 - 1, view.yDim * 2 - 1)));
+						trimmedArray(container, view.xDim - 1, view.yDim - 1, view.xDim * 2 - 1, view.yDim * 2 - 1)));
 			}
 		}
 		return possibleShifts;
 	}
 
 	// return emptyContainer
-	private static int[][] emptyContainer(int rowNum, int colNum) {
+	private static int[][] emptyArray(int rowNum, int colNum) {
 		int[][] container = new int[rowNum][colNum];
 		for (int i = 0; i < container.length; i++) {
 			Arrays.fill(container[i], 0);
@@ -67,7 +67,7 @@ public class CameraView {
 	}
 
 	// copy 2d array
-	private static void copyViewToLocation(int[][] source, int[][] dest, int startI, int startJ) {
+	private static void copyArrayToLocation(int[][] source, int[][] dest, int startI, int startJ) {
 		for (int i = 0; i < source.length; i++) {
 			for (int j = 0; j < source[0].length; j++) {
 				dest[startI + i][startJ + j] = source[i][j];
@@ -76,7 +76,7 @@ public class CameraView {
 	}
 
 	// return a part of a 2d array
-	private static int[][] trimmedView(int[][] source, int startI, int startJ, int endI, int endJ) {
+	private static int[][] trimmedArray(int[][] source, int startI, int startJ, int endI, int endJ) {
 		int[][] part = new int[endI - startI][endJ - startJ];
 		for (int i = startI; i < endI; i++) {
 			part[i - startI] = Arrays.copyOfRange(source[i], startJ, endJ);
