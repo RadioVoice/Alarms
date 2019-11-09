@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="DESKTOP-4K1HDNA" name="alarms.CameraViewTest$EmptyContainerTest" skipped="0" tests="6" time="0.174" timestamp="2019-11-09T19:48:14">
+<testsuite errors="0" failures="0" hostname="DESKTOP-4K1HDNA" name="alarms.CameraViewTest$EmptyContainerTest" skipped="0" tests="6" time="0.26" timestamp="2019-11-09T19:55:49">
   <properties>
     <property name="sun.desktop" value="windows" />
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
@@ -20,14 +20,14 @@
     <property name="sun.java.launcher" value="SUN_STANDARD" />
     <property name="user.country" value="US" />
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-12.0.2\bin" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner alarms.CameraViewTest$EmptyContainerTest skipNonTests=false filtertrace=false haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.OutErrSummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Owner\Desktop\Alarms\report\junit\TEST-alarms.CameraViewTest$EmptyContainerTest.xml crashfile=C:\Users\Owner\Desktop\Alarms\junitvmwatcher15478289998301820754.properties propsfile=C:\Users\Owner\Desktop\Alarms\junit17670313878135514039.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner alarms.CameraViewTest$EmptyContainerTest skipNonTests=false filtertrace=false haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.OutErrSummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Owner\Desktop\Alarms\report\junit\TEST-alarms.CameraViewTest$EmptyContainerTest.xml crashfile=C:\Users\Owner\Desktop\Alarms\junitvmwatcher1909321976675107308.properties propsfile=C:\Users\Owner\Desktop\Alarms\junit14289314184536746473.properties" />
     <property name="jdk.debug" value="release" />
     <property name="sun.cpu.endian" value="little" />
     <property name="user.home" value="C:\Users\Owner" />
     <property name="user.language" value="en" />
     <property name="sun.stderr.encoding" value="cp437" />
     <property name="java.specification.vendor" value="Oracle Corporation" />
-    <property name="_jacoco.agentFile" value="C:\Users\Owner\AppData\Local\Temp\jacocoagent16124092795180527152.jar" />
+    <property name="_jacoco.agentFile" value="C:\Users\Owner\AppData\Local\Temp\jacocoagent10840312719465444321.jar" />
     <property name="java.version.date" value="2019-07-16" />
     <property name="java.home" value="C:\Program Files\Java\jdk-12.0.2" />
     <property name="basedir" value="C:\Users\Owner\Desktop\Alarms" />
@@ -76,7 +76,7 @@
     <property name="java.class.version" value="56.0" />
     <property name="src.dir" value="src" />
   </properties>
-  <testcase classname="alarms.CameraViewTest$EmptyContainerTest" name="boundaryTest" time="0.0" />
+  <testcase classname="alarms.CameraViewTest$EmptyContainerTest" name="boundaryTest" time="0.01" />
   <testcase classname="alarms.CameraViewTest$EmptyContainerTest" name="badData1" time="0.0" />
   <testcase classname="alarms.CameraViewTest$EmptyContainerTest" name="badData2" time="0.0" />
   <testcase classname="alarms.CameraViewTest$EmptyContainerTest" name="badData3" time="0.0" />

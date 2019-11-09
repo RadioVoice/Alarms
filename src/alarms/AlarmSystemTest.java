@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 public class AlarmSystemTest {
     @Test
     public void normalTest(){
-        String args[] = {"C:\\Users\\Owner\\Desktop\\Alarms\\TestFiles\\test1.txt"};
+        String args[] = {"TestFiles\\test1.txt"};
         java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream();
         System.setOut(new java.io.PrintStream(out));
         AlarmSystem.main(args);
@@ -15,7 +15,7 @@ public class AlarmSystemTest {
 
     @Test
     public void nonSquareTest(){
-        String args[] = {"C:\\Users\\Owner\\Desktop\\Alarms\\TestFiles\\test2.txt"};
+        String args[] = {"TestFiles\\test2.txt"};
         java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream();
         System.setOut(new java.io.PrintStream(out));
         AlarmSystem.main(args);
@@ -24,7 +24,7 @@ public class AlarmSystemTest {
 
     @Test
     public void airplaneTest(){
-        String args[] = {"C:\\Users\\Owner\\Desktop\\Alarms\\TestFiles\\test3.txt"};
+        String args[] = {"TestFiles\\test3.txt"};
         java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream();
         System.setOut(new java.io.PrintStream(out));
         AlarmSystem.main(args);
@@ -33,7 +33,7 @@ public class AlarmSystemTest {
 
     @Test
     public void topShiftTest(){
-        String args[] = {"C:\\Users\\Owner\\Desktop\\Alarms\\TestFiles\\test4.txt"};
+        String args[] = {"TestFiles\\test4.txt"};
         java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream();
         System.setOut(new java.io.PrintStream(out));
         AlarmSystem.main(args);
@@ -42,7 +42,7 @@ public class AlarmSystemTest {
 
     @Test
     public void fallingTest(){
-        String args[] = {"C:\\Users\\Owner\\Desktop\\Alarms\\TestFiles\\test5.txt"};
+        String args[] = {"TestFiles\\test5.txt"};
         java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream();
         System.setOut(new java.io.PrintStream(out));
         AlarmSystem.main(args);
@@ -51,7 +51,7 @@ public class AlarmSystemTest {
 
     @Test
     public void multipleFallTest(){
-        String args[] = {"C:\\Users\\Owner\\Desktop\\Alarms\\TestFiles\\test6.txt"};
+        String args[] = {"TestFiles\\test6.txt"};
         java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream();
         System.setOut(new java.io.PrintStream(out));
         AlarmSystem.main(args);
@@ -60,7 +60,7 @@ public class AlarmSystemTest {
 
     @Test
     public void airplaneNextToBoxTest(){
-        String args[] = {"C:\\Users\\Owner\\Desktop\\Alarms\\TestFiles\\test7.txt"};
+        String args[] = {"TestFiles\\test7.txt"};
         java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream();
         System.setOut(new java.io.PrintStream(out));
         AlarmSystem.main(args);
@@ -68,7 +68,7 @@ public class AlarmSystemTest {
     }
     @Test
     public void invalidMatricesTest(){
-        String args[] = {"C:\\Users\\Owner\\Desktop\\Alarms\\TestFiles\\test8.txt"};
+        String args[] = {"TestFiles\\test8.txt"};
         java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream();
         System.setOut(new java.io.PrintStream(out));
         AlarmSystem.main(args);
@@ -76,7 +76,7 @@ public class AlarmSystemTest {
     }
     @Test
     public void invalidNegativeDimensionTest(){
-        String args[] = {"C:\\Users\\Owner\\Desktop\\Alarms\\TestFiles\\test9.txt"};
+        String args[] = {"TestFiles\\test9.txt"};
         java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream();
         System.setOut(new java.io.PrintStream(out));
         AlarmSystem.main(args);
@@ -85,7 +85,7 @@ public class AlarmSystemTest {
 
     @Test
     public void invalidMatrixSizeTest(){
-        String args[] = {"C:\\Users\\Owner\\Desktop\\Alarms\\TestFiles\\test10.txt"};
+        String args[] = {"TestFiles\\test10.txt"};
         java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream();
         System.setOut(new java.io.PrintStream(out));
         AlarmSystem.main(args);
@@ -93,7 +93,7 @@ public class AlarmSystemTest {
     }
     @Test
     public void invalidMissingDimensionsTest(){
-        String args[] = {"C:\\Users\\Owner\\Desktop\\Alarms\\TestFiles\\test11.txt"};
+        String args[] = {"TestFiles\\test11.txt"};
         java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream();
         System.setOut(new java.io.PrintStream(out));
         AlarmSystem.main(args);

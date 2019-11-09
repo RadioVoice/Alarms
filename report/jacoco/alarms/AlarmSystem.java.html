@@ -59,7 +59,7 @@ public class AlarmSystem {
 <span class="fc" id="L59">    }</span>
 
 	// check front, side, top view separately for each frame.
-	boolean shouldAlarmSound(int index) {
+	private boolean shouldAlarmSound(int index) {
 <span class="fc bfc" id="L63" title="All 2 branches covered.">		for (CameraDirection direction : CameraDirection.values()) { </span>
 <span class="fc bfc" id="L64" title="All 2 branches covered.">			if (isAlarmInDirection(direction, index)) {</span>
 <span class="fc" id="L65">				return true;</span>

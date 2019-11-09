@@ -1,13 +1,13 @@
 <html xmlns:string="xalan://java.lang.String" xmlns:lxslt="http://xml.apache.org/xslt">
     <head>
         <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Unit Test Results: alarms.AlarmSystemTest</title>
+        <title>Unit Test Results: alarms.CameraViewTest</title>
         <link rel="stylesheet" type="text/css" title="Style" href="../stylesheet.css">
         <script type="text/javascript" language="JavaScript">
         var TestCases = new Array();
         var cur;
         
-    cur = TestCases['alarms.AlarmSystemTest'] = new Array();
+    cur = TestCases['alarms.CameraViewTest'] = new Array();
     
         cur['_jacoco.agentFile'] = 'C:\\Users\\Owner\\AppData\\Local\\Temp\\jacocoagent10840312719465444321.jar';
     
@@ -129,7 +129,7 @@
     
         cur['sun.io.unicode.encoding'] = 'UnicodeLittle';
     
-        cur['sun.java.command'] = 'org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner alarms.AlarmSystemTest skipNonTests=false filtertrace=false haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.OutErrSummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\\Users\\Owner\\Desktop\\Alarms\\report\\junit\\TEST-alarms.AlarmSystemTest.xml crashfile=C:\\Users\\Owner\\Desktop\\Alarms\\junitvmwatcher11866814940739948636.properties propsfile=C:\\Users\\Owner\\Desktop\\Alarms\\junit10474343735694619431.properties';
+        cur['sun.java.command'] = 'org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner alarms.CameraViewTest skipNonTests=false filtertrace=false haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.OutErrSummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\\Users\\Owner\\Desktop\\Alarms\\report\\junit\\TEST-alarms.CameraViewTest.xml crashfile=C:\\Users\\Owner\\Desktop\\Alarms\\junitvmwatcher274095195601944283.properties propsfile=C:\\Users\\Owner\\Desktop\\Alarms\\junit8456276142113141688.properties';
     
         cur['sun.java.launcher'] = 'SUN_STANDARD';
     
@@ -194,13 +194,13 @@
             </tr>
         </table>
         <hr size="1">
-        <h3>Class alarms.AlarmSystemTest</h3>
+        <h3>Class alarms.CameraViewTest</h3>
         <table class="details" border="0" cellpadding="5" cellspacing="2" width="95%">
             <tr valign="top">
                 <th width="80%">Name</th><th>Tests</th><th>Errors</th><th>Failures</th><th>Skipped</th><th nowrap>Time(s)</th><th nowrap>Time Stamp</th><th>Host</th>
             </tr>
             <tr valign="top" class="Pass">
-                <td><a title="Display all tests" href="0_AlarmSystemTest.html">AlarmSystemTest</a></td><td><a title="Display all tests" href="0_AlarmSystemTest.html">12</a></td><td>0</td><td>0</td><td>0</td><td>0.392</td><td>2019-11-09T19:55:47</td><td>DESKTOP-4K1HDNA</td>
+                <td><a title="Display all tests" href="7_CameraViewTest.html">CameraViewTest</a></td><td><a title="Display all tests" href="7_CameraViewTest.html">37</a></td><td>0</td><td>0</td><td>0</td><td>0.246</td><td>2019-11-09T19:55:54</td><td>DESKTOP-4K1HDNA</td>
             </tr>
         </table>
         <h2>Tests</h2>
@@ -209,44 +209,119 @@
                 <th>Name</th><th>Status</th><th width="80%">Type</th><th nowrap>Time(s)</th>
             </tr>
             <tr valign="top" class="TableRowColor">
-                <td><a name="multipleFallTest"></a>multipleFallTest</td><td>Success</td><td></td><td>0.050</td>
+                <td><a name="boundaryTest1"></a>boundaryTest1</td><td>Success</td><td></td><td>0.000</td>
             </tr>
             <tr valign="top" class="TableRowColor">
-                <td><a name="topShiftTest"></a>topShiftTest</td><td>Success</td><td></td><td>0.002</td>
+                <td><a name="boundaryTest2"></a>boundaryTest2</td><td>Success</td><td></td><td>0.000</td>
             </tr>
             <tr valign="top" class="TableRowColor">
-                <td><a name="invalidMatrixSizeTest"></a>invalidMatrixSizeTest</td><td>Success</td><td></td><td>0.009</td>
+                <td><a name="badData1"></a>badData1</td><td>Success</td><td></td><td>0.000</td>
             </tr>
             <tr valign="top" class="TableRowColor">
-                <td><a name="normalTest"></a>normalTest</td><td>Success</td><td></td><td>0.000</td>
+                <td><a name="badData2"></a>badData2</td><td>Success</td><td></td><td>0.000</td>
             </tr>
             <tr valign="top" class="TableRowColor">
-                <td><a name="fallingTest"></a>fallingTest</td><td>Success</td><td></td><td>0.010</td>
+                <td><a name="badData3"></a>badData3</td><td>Success</td><td></td><td>0.000</td>
             </tr>
             <tr valign="top" class="TableRowColor">
-                <td><a name="nonSquareTest"></a>nonSquareTest</td><td>Success</td><td></td><td>0.010</td>
+                <td><a name="badData4"></a>badData4</td><td>Success</td><td></td><td>0.000</td>
             </tr>
             <tr valign="top" class="TableRowColor">
-                <td><a name="invalidNegativeDimensionTest"></a>invalidNegativeDimensionTest</td><td>Success</td><td></td><td>0.000</td>
+                <td><a name="badData5"></a>badData5</td><td>Success</td><td></td><td>0.000</td>
             </tr>
             <tr valign="top" class="TableRowColor">
-                <td><a name="airplaneNextToBoxTest"></a>airplaneNextToBoxTest</td><td>Success</td><td></td><td>0.010</td>
+                <td><a name="badData6"></a>badData6</td><td>Success</td><td></td><td>0.000</td>
             </tr>
             <tr valign="top" class="TableRowColor">
-                <td><a name="invalidMissingDimensionsTest"></a>invalidMissingDimensionsTest</td><td>Success</td><td></td><td>0.000</td>
+                <td><a name="badData7"></a>badData7</td><td>Success</td><td></td><td>0.000</td>
             </tr>
             <tr valign="top" class="TableRowColor">
-                <td><a name="airplaneTest"></a>airplaneTest</td><td>Success</td><td></td><td>0.010</td>
+                <td><a name="badData8"></a>badData8</td><td>Success</td><td></td><td>0.000</td>
             </tr>
             <tr valign="top" class="TableRowColor">
-                <td><a name="invalidArgumentTest"></a>invalidArgumentTest</td><td>Success</td><td></td><td>0.000</td>
+                <td><a name="badData9"></a>badData9</td><td>Success</td><td></td><td>0.000</td>
             </tr>
             <tr valign="top" class="TableRowColor">
-                <td><a name="invalidMatricesTest"></a>invalidMatricesTest</td><td>Success</td><td></td><td>0.000</td>
+                <td><a name="goodData"></a>goodData</td><td>Success</td><td></td><td>0.000</td>
+            </tr>
+            <tr valign="top" class="TableRowColor">
+                <td><a name="boundaryTest"></a>boundaryTest</td><td>Success</td><td></td><td>0.000</td>
+            </tr>
+            <tr valign="top" class="TableRowColor">
+                <td><a name="badData1"></a>badData1</td><td>Success</td><td></td><td>0.000</td>
+            </tr>
+            <tr valign="top" class="TableRowColor">
+                <td><a name="badData2"></a>badData2</td><td>Success</td><td></td><td>0.000</td>
+            </tr>
+            <tr valign="top" class="TableRowColor">
+                <td><a name="badData3"></a>badData3</td><td>Success</td><td></td><td>0.000</td>
+            </tr>
+            <tr valign="top" class="TableRowColor">
+                <td><a name="badData4"></a>badData4</td><td>Success</td><td></td><td>0.000</td>
+            </tr>
+            <tr valign="top" class="TableRowColor">
+                <td><a name="badData5"></a>badData5</td><td>Success</td><td></td><td>0.008</td>
+            </tr>
+            <tr valign="top" class="TableRowColor">
+                <td><a name="badData6"></a>badData6</td><td>Success</td><td></td><td>0.000</td>
+            </tr>
+            <tr valign="top" class="TableRowColor">
+                <td><a name="goodData"></a>goodData</td><td>Success</td><td></td><td>0.000</td>
+            </tr>
+            <tr valign="top" class="TableRowColor">
+                <td><a name="boundaryTest"></a>boundaryTest</td><td>Success</td><td></td><td>0.000</td>
+            </tr>
+            <tr valign="top" class="TableRowColor">
+                <td><a name="badData1"></a>badData1</td><td>Success</td><td></td><td>0.000</td>
+            </tr>
+            <tr valign="top" class="TableRowColor">
+                <td><a name="badData2"></a>badData2</td><td>Success</td><td></td><td>0.000</td>
+            </tr>
+            <tr valign="top" class="TableRowColor">
+                <td><a name="badData3"></a>badData3</td><td>Success</td><td></td><td>0.000</td>
+            </tr>
+            <tr valign="top" class="TableRowColor">
+                <td><a name="badData4"></a>badData4</td><td>Success</td><td></td><td>0.000</td>
+            </tr>
+            <tr valign="top" class="TableRowColor">
+                <td><a name="goodData"></a>goodData</td><td>Success</td><td></td><td>0.000</td>
+            </tr>
+            <tr valign="top" class="TableRowColor">
+                <td><a name="branchCoverage1"></a>branchCoverage1</td><td>Success</td><td></td><td>0.000</td>
+            </tr>
+            <tr valign="top" class="TableRowColor">
+                <td><a name="branchCoverage2"></a>branchCoverage2</td><td>Success</td><td></td><td>0.000</td>
+            </tr>
+            <tr valign="top" class="TableRowColor">
+                <td><a name="badData1"></a>badData1</td><td>Success</td><td></td><td>0.000</td>
+            </tr>
+            <tr valign="top" class="TableRowColor">
+                <td><a name="badData2"></a>badData2</td><td>Success</td><td></td><td>0.000</td>
+            </tr>
+            <tr valign="top" class="TableRowColor">
+                <td><a name="goodData"></a>goodData</td><td>Success</td><td></td><td>0.000</td>
+            </tr>
+            <tr valign="top" class="TableRowColor">
+                <td><a name="badData"></a>badData</td><td>Success</td><td></td><td>0.000</td>
+            </tr>
+            <tr valign="top" class="TableRowColor">
+                <td><a name="boundaryTest"></a>boundaryTest</td><td>Success</td><td></td><td>0.000</td>
+            </tr>
+            <tr valign="top" class="TableRowColor">
+                <td><a name="goodData"></a>goodData</td><td>Success</td><td></td><td>0.000</td>
+            </tr>
+            <tr valign="top" class="TableRowColor">
+                <td><a name="badData1"></a>badData1</td><td>Success</td><td></td><td>0.000</td>
+            </tr>
+            <tr valign="top" class="TableRowColor">
+                <td><a name="badData2"></a>badData2</td><td>Success</td><td></td><td>0.000</td>
+            </tr>
+            <tr valign="top" class="TableRowColor">
+                <td><a name="goodData"></a>goodData</td><td>Success</td><td></td><td>0.000</td>
             </tr>
         </table>
         <div class="Properties">
-            <a href="javascript:displayProperties('alarms.AlarmSystemTest');">
+            <a href="javascript:displayProperties('alarms.CameraViewTest');">
                     Properties &raquo;
                 </a>
         </div>

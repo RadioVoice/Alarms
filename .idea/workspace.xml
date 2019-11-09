@@ -1,7 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="11a4435d-bf94-4f11-a995-182195ca9f32" name="Default Changelist" comment="" />
+    <list default="true" id="11a4435d-bf94-4f11-a995-182195ca9f32" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/build/alarms/CameraViewTest$CopyViewToLocationTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/alarms/CameraViewTest$TrimmedViewTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/report/junit/TEST-alarms.CameraViewTest$CopyViewToLocationTest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/report/junit/TEST-alarms.CameraViewTest$TrimmedViewTest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/report/junit/alarms/1_CameraViewTest$CopyViewToLocationTest.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/report/junit/alarms/2_CameraViewTest$EmptyContainerTest.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/report/junit/alarms/3_CameraViewTest$EqualsObjectTest.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/report/junit/alarms/4_CameraViewTest$OfTest.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/report/junit/alarms/5_CameraViewTest$PossibleShiftedViewsTest.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/report/junit/alarms/6_CameraViewTest$TrimmedViewTest.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/report/junit/alarms/7_CameraViewTest.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/alarms/AlarmSystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/alarms/AlarmSystem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/alarms/CameraView.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/alarms/CameraView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/alarms/CameraViewTest$EqualsObjectTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/alarms/CameraViewTest$EqualsObjectTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/alarms/CameraViewTest$PossibleShiftedViewsTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/alarms/CameraViewTest$PossibleShiftedViewsTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/alarms/CameraViewTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/alarms/CameraViewTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Alarms/alarms/AlarmSystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alarms/alarms/AlarmSystem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Alarms/alarms/AlarmSystemTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alarms/alarms/AlarmSystemTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Alarms/alarms/CameraView$TESTHOOK.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alarms/alarms/CameraView$TESTHOOK.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Alarms/alarms/CameraView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alarms/alarms/CameraView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Alarms/alarms/CameraViewTest$OfTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alarms/alarms/CameraViewTest$OfTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Alarms/alarms/CameraViewTest$PossibleShiftedViewsTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alarms/alarms/CameraViewTest$PossibleShiftedViewsTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Alarms/alarms/CameraViewTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alarms/alarms/CameraViewTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/jacoco/alarms/AlarmSystem.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/report/jacoco/alarms/AlarmSystem.java.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/jacoco/alarms/CameraView$TESTHOOK.html" beforeDir="false" afterPath="$PROJECT_DIR$/report/jacoco/alarms/CameraView$TESTHOOK.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/jacoco/alarms/CameraView.html" beforeDir="false" afterPath="$PROJECT_DIR$/report/jacoco/alarms/CameraView.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/jacoco/alarms/CameraView.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/report/jacoco/alarms/CameraView.java.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/jacoco/alarms/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/report/jacoco/alarms/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/jacoco/alarms/index.source.html" beforeDir="false" afterPath="$PROJECT_DIR$/report/jacoco/alarms/index.source.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/jacoco/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/report/jacoco/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/jacoco/jacoco-sessions.html" beforeDir="false" afterPath="$PROJECT_DIR$/report/jacoco/jacoco-sessions.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/jacoco/jacoco.exec" beforeDir="false" afterPath="$PROJECT_DIR$/report/jacoco/jacoco.exec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/junit/TEST-alarms.AlarmSystemTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/report/junit/TEST-alarms.AlarmSystemTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/junit/TEST-alarms.CameraViewTest$EmptyContainerTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/report/junit/TEST-alarms.CameraViewTest$EmptyContainerTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/junit/TEST-alarms.CameraViewTest$EqualsObjectTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/report/junit/TEST-alarms.CameraViewTest$EqualsObjectTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/junit/TEST-alarms.CameraViewTest$OfTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/report/junit/TEST-alarms.CameraViewTest$OfTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/junit/TEST-alarms.CameraViewTest$PossibleShiftedViewsTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/report/junit/TEST-alarms.CameraViewTest$PossibleShiftedViewsTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/junit/TEST-alarms.CameraViewTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/report/junit/TEST-alarms.CameraViewTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/junit/TESTS-TestSuites.xml" beforeDir="false" afterPath="$PROJECT_DIR$/report/junit/TESTS-TestSuites.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/junit/alarms/0_AlarmSystemTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/report/junit/alarms/0_AlarmSystemTest.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/junit/alarms/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/report/junit/alarms/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/junit/alarms/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/report/junit/alarms/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/junit/all-tests.html" beforeDir="false" afterPath="$PROJECT_DIR$/report/junit/all-tests.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/junit/allclasses-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/report/junit/allclasses-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/junit/overview-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/report/junit/overview-summary.html" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +98,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.AlarmSystemTest.invalidArgumentTest">
+  <component name="RunManager" selected="JUnit.AlarmSystemTest">
     <configuration name="AlarmSystemTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Alarms" />
       <extension name="coverage">
@@ -67,22 +114,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AlarmSystemTest.airplaneNextToBoxTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Alarms" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="alarms.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="alarms" />
-      <option name="MAIN_CLASS_NAME" value="alarms.AlarmSystemTest" />
-      <option name="METHOD_NAME" value="airplaneNextToBoxTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="AlarmSystemTest.invalidArgumentTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Alarms" />
       <extension name="coverage">
@@ -94,22 +125,6 @@
       <option name="PACKAGE_NAME" value="alarms" />
       <option name="MAIN_CLASS_NAME" value="alarms.AlarmSystemTest" />
       <option name="METHOD_NAME" value="invalidArgumentTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AlarmSystemTest.invalidMatrixSizeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Alarms" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="alarms.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="alarms" />
-      <option name="MAIN_CLASS_NAME" value="alarms.AlarmSystemTest" />
-      <option name="METHOD_NAME" value="invalidMatrixSizeTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -131,13 +146,44 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="AlarmSystemTest.normalTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Alarms" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="alarms.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="alarms" />
+      <option name="MAIN_CLASS_NAME" value="alarms.AlarmSystemTest" />
+      <option name="METHOD_NAME" value="normalTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CameraViewTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Alarms" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="alarms.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="alarms" />
+      <option name="MAIN_CLASS_NAME" value="alarms.CameraViewTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.AlarmSystemTest.invalidArgumentTest" />
         <item itemvalue="JUnit.AlarmSystemTest" />
+        <item itemvalue="JUnit.AlarmSystemTest.normalTest" />
+        <item itemvalue="JUnit.CameraViewTest" />
+        <item itemvalue="JUnit.AlarmSystemTest.invalidArgumentTest" />
         <item itemvalue="JUnit.AlarmSystemTest.multipleFallTest" />
-        <item itemvalue="JUnit.AlarmSystemTest.airplaneNextToBoxTest" />
-        <item itemvalue="JUnit.AlarmSystemTest.invalidMatrixSizeTest" />
       </list>
     </recent_temporary>
   </component>
