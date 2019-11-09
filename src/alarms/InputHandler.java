@@ -111,15 +111,6 @@ public class InputHandler {
     ArrayList<Frame> getFrames(){
         return frames;
     }
-    int getX(){
-        return x;
-    }
-    int getY(){
-        return y;
-    }
-    int getZ(){
-        return z;
-    }
 
     public class TestHook{
         int[][] testMatrixFromString(int x, int y, String s){

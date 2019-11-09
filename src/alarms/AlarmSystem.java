@@ -1,23 +1,57 @@
 package alarms;
 
-import java.util.ArrayList;
+import java.io.File;
+import java.io.IOException;
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.Objects;
 
 public class AlarmSystem {
 
-	private List<Frame> frames = new ArrayList<>();
+	private List<Frame> frames;
 	private EnumMap<CameraDirection, CameraView> originalViewMap;
 	private EnumMap<CameraDirection, List<CameraView>> possibleShiftsMap;
 
 	// constructor
-	public AlarmSystem(List<Frame> frames) {
+	private AlarmSystem(List<Frame> frames, EnumMap<CameraDirection, CameraView> original, EnumMap<CameraDirection, List<CameraView>> shifts) {
 		this.frames = frames;
-		originalViewMap = frames.get(0).getViewMap();
-		EnumSet.allOf(CameraDirection.class).forEach(direction -> possibleShiftsMap.put(direction,
-				CameraView.possibleShiftedViews(originalViewMap.get(direction))));
+		originalViewMap = original;
+		possibleShiftsMap = shifts;
 	}
+
+	public static AlarmSystem of(List<Frame> frames) {
+        Objects.requireNonNull(frames);
+        EnumMap<CameraDirection, CameraView> original = frames.get(0).getViewMap();
+        EnumMap<CameraDirection, List<CameraView>> shifts = new EnumMap<>(CameraDirection.class);
+        EnumSet.allOf(CameraDirection.class).forEach(direction -> shifts.put(direction,
+                CameraView.possibleShiftedViews(original.get(direction))));
+
+        return new AlarmSystem(frames, original, shifts);
+    }
+
+	public static void main(String[] args){
+	    if (args.length != 1){
+	        System.out.println("invalid");
+            System.exit(-1);
+        }
+	    String filePath = args[0];
+	    try{
+            InputHandler handler = InputHandler.of(new File(filePath));
+            AlarmSystem as = AlarmSystem.of(handler.getFrames());
+
+            for (int i = 0; i < as.getFrames().size(); i++){
+                if (as.shouldAlarmSound(i)){
+                    System.out.println("true");
+                    System.exit(0);
+                }
+            }
+        } catch (IOException e){
+	        System.out.println("invalid");
+	        System.exit(-1);
+        }
+	    System.out.println("false");
+    }
 
 	// check front, side, top view separately for each frame.
 	boolean shouldAlarmSound(int index) {
@@ -50,6 +84,11 @@ public class AlarmSystem {
 		}
 		return true;
 	}
+
+	private List<Frame> getFrames(){
+        return frames;
+    }
+
 	
 	// boolean isCameraOff(alarms.State)
 	// checks for any null CameraViews in the state
