@@ -7,12 +7,7 @@ import org.junit.Test;
 public class CameraViewTest {
 
 	@Test
-	public void testHasFloating() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testIsShiftFrom() {
+	public void testOf() {
 		fail("Not yet implemented");
 	}
 
