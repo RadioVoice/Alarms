@@ -18,7 +18,7 @@ public class CameraView {
 		cameraDirection = direction;
 	}
 
-	public static CameraView of(CameraDirection direction, int[][] inputData){
+	public static CameraView of(CameraDirection direction, int[][] inputData) {
 		Objects.requireNonNull(inputData);
 		Objects.requireNonNull(direction);
 		return new CameraView(direction, inputData);
@@ -58,6 +58,8 @@ public class CameraView {
 
 	// return emptyContainer
 	private static int[][] emptyContainer(int rowNum, int colNum) {
+		assert rowNum > 0;
+		assert colNum > 0;
 		int[][] container = new int[rowNum][colNum];
 		for (int i = 0; i < container.length; i++) {
 			Arrays.fill(container[i], 0);
@@ -67,6 +69,10 @@ public class CameraView {
 
 	// copy 2d array
 	private static void copyViewToLocation(int[][] source, int[][] dest, int startI, int startJ) {
+		Objects.requireNonNull(source);
+		Objects.requireNonNull(dest);
+		assert 0 <= startI && startI + source.length <= dest.length;
+		assert 0 <= startJ && startJ + source[0].length <= dest[0].length;
 		for (int i = 0; i < source.length; i++) {
 			for (int j = 0; j < source[0].length; j++) {
 				dest[startI + i][startJ + j] = source[i][j];
@@ -77,6 +83,8 @@ public class CameraView {
 	// return a part of a 2d array
 	private static int[][] trimmedView(int[][] source, int startI, int startJ, int endI, int endJ) {
 		Objects.requireNonNull(source);
+		assert 0 <= startI && startI <= endI && endI <= source.length;
+		assert 0 <= startJ && startJ <= endJ && endJ <= source[0].length;
 		int[][] part = new int[endI - startI][endJ - startJ];
 		for (int i = startI; i < endI; i++) {
 			part[i - startI] = Arrays.copyOfRange(source[i], startJ, endJ);
@@ -95,10 +103,12 @@ public class CameraView {
 		public static int[][] testEmptyContainer(int rowNum, int colNum) {
 			return emptyContainer(rowNum, colNum);
 		}
+
 		public static void testCopyViewToLocation(int[][] source, int[][] dest, int startI, int startJ) {
 			copyViewToLocation(source, dest, startI, startJ);
 		}
-		public static int[][] testTrimmedView(int[][] source, int startI, int startJ, int endI, int endJ){
+
+		public static int[][] testTrimmedView(int[][] source, int startI, int startJ, int endI, int endJ) {
 			return trimmedView(source, startI, startJ, endI, endJ);
 		}
 	}
