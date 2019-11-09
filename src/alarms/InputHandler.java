@@ -23,12 +23,16 @@ public class InputHandler {
         int xDim, yDim, zDim;
         ArrayList<Frame> frameList = new ArrayList<Frame>();
 
-        Scanner scan = new Scanner(file);
-        requireValidInput(scan);
+        Scanner validScan = new Scanner(file);
+        requireValidInput(validScan);
 
-        xDim = Integer.parseInt(scan.findInLine("\\d"));
-        yDim = Integer.parseInt(scan.findInLine("\\d"));
-        zDim = Integer.parseInt(scan.findInLine("\\d"));
+        Scanner scan = new Scanner(file);
+        String dimensionLine = scan.nextLine();
+        String[] dimensions = dimensionLine.split(" ");
+
+        xDim = Integer.parseInt(dimensions[0]);
+        yDim = Integer.parseInt(dimensions[1]);
+        zDim = Integer.parseInt(dimensions[2]);
 
         while(scan.hasNextLine()) {
             String[] frameSet = scan.nextLine().split(" ");
@@ -53,22 +57,22 @@ public class InputHandler {
                 checkFrameLine(scan.nextLine(), x, y, z);
             }
         } catch (IllegalArgumentException e){
-            throw new IOException();
+            throw new IOException(e.getMessage());
         }
     }
 
     static void checkDimensionLine(String s) throws IllegalArgumentException{
         Pattern dimLineP = Pattern.compile("\\d+ \\d+ \\d+");
-        Pattern zeroOrOne = Pattern.compile("[01]");
+        Pattern posDigits = Pattern.compile("[1-9]+");
         Matcher m = dimLineP.matcher(s);
         if (!m.matches()){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Dimension Line not correct");
         }
         String[] dimensions = s.split(" ");
         for (String digit: dimensions){
-            Matcher m2 = zeroOrOne.matcher(digit);
+            Matcher m2 = posDigits.matcher(digit);
             if (!m2.matches()){
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("Dimensions are not valid");
             }
         }
     }
@@ -77,14 +81,14 @@ public class InputHandler {
         Pattern frameLineP = Pattern.compile("[01]+ [01]+ [01]+");
         Matcher m = frameLineP.matcher(s);
         if (!m.matches()){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Frame Line not formatted correctly");
         }
         String[] views = s.split(" ");
         int[] validSizes = {xDim*zDim, yDim*zDim, xDim*yDim};
 
         for (int i = 0; i < 3; i++){
             if (views[i].length() != validSizes[i])
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("Single view (" + i + ") does not match expected size");
         }
     }
     
@@ -94,14 +98,14 @@ public class InputHandler {
 		assert (x > 0 && y > 0);
 		assert (inputData.length() == x * y);
 
-		byte[] inputBytes = inputData.getBytes();
-		int byteIndex = 0;
+		char[] digits = inputData.toCharArray();
+		int index = 0;
 		int[][] returnData = new int[x][y];
 
 		for (int i = 0; i < x; i++) {
 			for (int j = 0; j < y; j++) {
-				returnData[i][j] = inputBytes[byteIndex] - '0';
-				byteIndex++;
+				returnData[i][j] = Character.getNumericValue(digits[index]);
+				index++;
 			}
 		}
 

@@ -32,7 +32,7 @@ public class AlarmSystem {
 
 	public static void main(String[] args){
 	    if (args.length != 1){
-	        System.out.println("invalid");
+	        System.out.println("invalid commandline argument");
             System.exit(-1);
         }
 	    String filePath = args[0];
@@ -47,7 +47,8 @@ public class AlarmSystem {
                 }
             }
         } catch (IOException e){
-	        System.out.println("invalid");
+	        System.out.println("invalid file formatting");
+	        System.out.println(e.getMessage());
 	        System.exit(-1);
         }
 	    System.out.println("false");
