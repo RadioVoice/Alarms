@@ -3,14 +3,19 @@
   <component name="ChangeListManager">
     <list default="true" id="11a4435d-bf94-4f11-a995-182195ca9f32" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alarms/alarms/CameraView$TESTHOOK.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alarms/alarms/CameraView$TESTHOOK.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alarms/alarms/CameraView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alarms/alarms/CameraView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alarms/alarms/CameraViewTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alarms/alarms/CameraViewTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alarms/alarms/Frame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alarms/alarms/Frame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Alarms/alarms/InputHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alarms/alarms/InputHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/test1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/TestFiles/test1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/test10.txt" beforeDir="false" afterPath="$PROJECT_DIR$/TestFiles/test10.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/test11.txt" beforeDir="false" afterPath="$PROJECT_DIR$/TestFiles/test11.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/test2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/TestFiles/test2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/test3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/TestFiles/test3.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/test4.txt" beforeDir="false" afterPath="$PROJECT_DIR$/TestFiles/test4.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/test5.txt" beforeDir="false" afterPath="$PROJECT_DIR$/TestFiles/test5.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/test6.txt" beforeDir="false" afterPath="$PROJECT_DIR$/TestFiles/test6.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/test7.txt" beforeDir="false" afterPath="$PROJECT_DIR$/TestFiles/test7.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/test8.txt" beforeDir="false" afterPath="$PROJECT_DIR$/TestFiles/test8.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/test9.txt" beforeDir="false" afterPath="$PROJECT_DIR$/TestFiles/test9.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Alarms/alarms/AlarmSystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alarms/alarms/AlarmSystem.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/alarms/AlarmSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/alarms/AlarmSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/alarms/InputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/alarms/InputHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test1.txt" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

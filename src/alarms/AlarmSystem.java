@@ -47,8 +47,7 @@ public class AlarmSystem {
                 }
             }
         } catch (IOException e){
-	        System.out.println("invalid file formatting");
-	        System.out.println(e.getMessage());
+	        System.out.println("invalid");
 	        System.exit(-1);
         }
 	    System.out.println("false");
@@ -66,8 +65,8 @@ public class AlarmSystem {
 
 	// check if the view equals to or is a shift from the original one
 	private boolean isAlarmInDirection(CameraDirection direction, int index) {
-		CameraView view = frames.get(index).getViewMap().get(direction);
-		if (!view.equals(originalViewMap.get(direction)) && !possibleShiftsMap.get(direction).contains(view)) {
+		CameraView view = viewFromFrames(direction, index);
+		if (!isOriginalOrShift(direction, view)) {
 			return isViewChangePermanent(direction, index);
 		}
 		return false;
@@ -78,8 +77,8 @@ public class AlarmSystem {
 		CameraView view;
 		int i = index + 1;
 		while (i < frames.size() && i <= index + 5) {
-			view = frames.get(i).getViewMap().get(direction);
-			if (view.equals(originalViewMap.get(direction)) || possibleShiftsMap.get(direction).contains(view)) {
+			view = viewFromFrames(direction, i);
+			if (isOriginalOrShift(direction, view)) {
 				return false;
 			}
 			i++;
@@ -87,11 +86,16 @@ public class AlarmSystem {
 		return true;
 	}
 
+	private CameraView viewFromFrames(CameraDirection cd, int index){
+		return frames.get(index).getViewMap().get(cd);
+	}
+
+	private boolean isOriginalOrShift(CameraDirection cd, CameraView cv){
+		return cv.equals(originalViewMap.get(cd)) || possibleShiftsMap.get(cd).contains(cv);
+	}
+
 	private List<Frame> getFrames(){
         return frames;
     }
 
-	
-	// boolean isCameraOff(alarms.State)
-	// checks for any null CameraViews in the state
 }
