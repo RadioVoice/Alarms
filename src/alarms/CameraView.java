@@ -11,7 +11,6 @@ public class CameraView {
 	private final int yDim;
 	private CameraDirection cameraDirection;
 
-	// private constructor
 	private CameraView(CameraDirection direction, int[][] inputData) {
 		data = inputData;
 		xDim = data.length;
@@ -19,8 +18,7 @@ public class CameraView {
 		cameraDirection = direction;
 	}
 
-	// public constructor
-	public static CameraView of(CameraDirection direction, int[][] inputData) throws NullPointerException {
+	public static CameraView of(CameraDirection direction, int[][] inputData){
 		Objects.requireNonNull(inputData);
 		Objects.requireNonNull(direction);
 		return new CameraView(direction, inputData);
@@ -41,6 +39,26 @@ public class CameraView {
 	public int getyDim() {
 		return yDim;
 	}
+
+    // convert a string to a 2D array with given row and column numbers
+    private static int[][] matrixFromString(int x, int y, String inputData) {
+        Objects.requireNonNull(inputData);
+        assert (x > 0 && y > 0);
+        assert (inputData.length() == x * y);
+
+        byte[] inputBytes = inputData.getBytes();
+        int byteIndex = 0;
+        int[][] returnData = new int[x][y];
+
+        for (int i = 0; i < x; i++) {
+            for (int j = 0; j < y; j++) {
+                returnData[i][j] = inputBytes[byteIndex] - '0';
+                byteIndex++;
+            }
+        }
+
+        return returnData;
+    }
 
 	// get all possible shifted views
 	public static List<CameraView> possibleShiftedViews(CameraView view) {

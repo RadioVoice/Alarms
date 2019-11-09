@@ -104,7 +104,7 @@ public class InputHandler {
 				byteIndex++;
 			}
 		}
-		
+
 		return returnData;
     }
 
@@ -119,5 +119,11 @@ public class InputHandler {
     }
     int getZ(){
         return z;
+    }
+
+    public class TestHook{
+        int[][] testMatrixFromString(int x, int y, String s){
+            return matrixFromString(x, y, s);
+        }
     }
 }
